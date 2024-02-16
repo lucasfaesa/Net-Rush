@@ -37,7 +37,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Cut"",
+                    ""name"": ""Bump"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5cccc8f-7536-4fe7-ac22-af5a67090cb0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CutWide"",
                     ""type"": ""Button"",
                     ""id"": ""b27b77ae-7a15-4901-8219-fc8754dd00fb"",
                     ""expectedControlType"": ""Button"",
@@ -46,9 +55,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Bump"",
+                    ""name"": ""CutNarrow"",
                     ""type"": ""Button"",
-                    ""id"": ""b5cccc8f-7536-4fe7-ac22-af5a67090cb0"",
+                    ""id"": ""2a43e2b3-835a-4da2-902d-795e8e4db2eb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -190,28 +199,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eabe6e6c-9909-4f45-87e3-2427f0390070"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Cut"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""28eb01ca-9a83-4cfd-aecd-e7a606d016e4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cut"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d5af7715-e2f3-4eb9-b71c-0bb0f810dddd"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -229,6 +216,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Bump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d588aaa1-c414-4f69-94e2-f022072fff8f"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e31b8565-ec90-4f45-a72c-6108f22d0e80"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eabe6e6c-9909-4f45-87e3-2427f0390070"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CutWide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28eb01ca-9a83-4cfd-aecd-e7a606d016e4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CutWide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -817,8 +848,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Cut = m_Player.FindAction("Cut", throwIfNotFound: true);
         m_Player_Bump = m_Player.FindAction("Bump", throwIfNotFound: true);
+        m_Player_CutWide = m_Player.FindAction("CutWide", throwIfNotFound: true);
+        m_Player_CutNarrow = m_Player.FindAction("CutNarrow", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -893,15 +925,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Cut;
     private readonly InputAction m_Player_Bump;
+    private readonly InputAction m_Player_CutWide;
+    private readonly InputAction m_Player_CutNarrow;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Cut => m_Wrapper.m_Player_Cut;
         public InputAction @Bump => m_Wrapper.m_Player_Bump;
+        public InputAction @CutWide => m_Wrapper.m_Player_CutWide;
+        public InputAction @CutNarrow => m_Wrapper.m_Player_CutNarrow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -914,12 +948,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Cut.started += instance.OnCut;
-            @Cut.performed += instance.OnCut;
-            @Cut.canceled += instance.OnCut;
             @Bump.started += instance.OnBump;
             @Bump.performed += instance.OnBump;
             @Bump.canceled += instance.OnBump;
+            @CutWide.started += instance.OnCutWide;
+            @CutWide.performed += instance.OnCutWide;
+            @CutWide.canceled += instance.OnCutWide;
+            @CutNarrow.started += instance.OnCutNarrow;
+            @CutNarrow.performed += instance.OnCutNarrow;
+            @CutNarrow.canceled += instance.OnCutNarrow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -927,12 +964,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Cut.started -= instance.OnCut;
-            @Cut.performed -= instance.OnCut;
-            @Cut.canceled -= instance.OnCut;
             @Bump.started -= instance.OnBump;
             @Bump.performed -= instance.OnBump;
             @Bump.canceled -= instance.OnBump;
+            @CutWide.started -= instance.OnCutWide;
+            @CutWide.performed -= instance.OnCutWide;
+            @CutWide.canceled -= instance.OnCutWide;
+            @CutNarrow.started -= instance.OnCutNarrow;
+            @CutNarrow.performed -= instance.OnCutNarrow;
+            @CutNarrow.canceled -= instance.OnCutNarrow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1116,8 +1156,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnCut(InputAction.CallbackContext context);
         void OnBump(InputAction.CallbackContext context);
+        void OnCutWide(InputAction.CallbackContext context);
+        void OnCutNarrow(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

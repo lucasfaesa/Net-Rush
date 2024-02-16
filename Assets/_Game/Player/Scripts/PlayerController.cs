@@ -54,12 +54,14 @@ public class PlayerController : MonoBehaviour
     
     //Animator Parameters
     private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
-    private static readonly int Cutting = Animator.StringToHash("Cutting");
+    private static readonly int CuttingWide = Animator.StringToHash("CuttingWide");
+    private static readonly int CuttingNarrow = Animator.StringToHash("CuttingNarrow");
     private static readonly int Bumping = Animator.StringToHash("Bumping");
 
     private void OnEnable()
     {
-        inputReader.Cut += CutAction;
+        inputReader.CutWide += CutWideAction;
+        inputReader.CutNarrow += CutNarrowAction;
         inputReader.Bump += BumpAction;
         animationFeedbackEventChannel.CutAnimationFinished += CutAnimationEnded;
         animationFeedbackEventChannel.BumpAnimationFinished += BumpAnimationEnded;
@@ -67,7 +69,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        inputReader.Cut -= CutAction;
+        inputReader.CutWide -= CutWideAction;
+        inputReader.CutNarrow -= CutNarrowAction;
         inputReader.Bump -= BumpAction;
         animationFeedbackEventChannel.CutAnimationFinished -= CutAnimationEnded;
         animationFeedbackEventChannel.BumpAnimationFinished -= BumpAnimationEnded;
@@ -105,12 +108,21 @@ public class PlayerController : MonoBehaviour
         HandleJump();
     }
 
-    private void CutAction(bool pressed)
+    private void CutWideAction(bool pressed)
     {
         if (_executingAction || !pressed) return;
         
         _executingAction = true;
-        animator.SetBool(Cutting, true);
+        animator.SetBool(CuttingWide, true);
+        
+    }
+    
+    private void CutNarrowAction(bool pressed)
+    {
+        if (_executingAction || !pressed) return;
+        
+        _executingAction = true;
+        animator.SetBool(CuttingNarrow, true);
         
     }
 
@@ -124,7 +136,8 @@ public class PlayerController : MonoBehaviour
 
     private void CutAnimationEnded()
     {
-        animator.SetBool(Cutting, false);
+        animator.SetBool(CuttingWide, false);
+        animator.SetBool(CuttingNarrow, false);
         _executingAction = false;
     }
 

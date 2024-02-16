@@ -15,7 +15,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Cut",
+                    "name": "Bump",
+                    "type": "Button",
+                    "id": "b5cccc8f-7536-4fe7-ac22-af5a67090cb0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CutWide",
                     "type": "Button",
                     "id": "b27b77ae-7a15-4901-8219-fc8754dd00fb",
                     "expectedControlType": "Button",
@@ -24,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Bump",
+                    "name": "CutNarrow",
                     "type": "Button",
-                    "id": "b5cccc8f-7536-4fe7-ac22-af5a67090cb0",
+                    "id": "2a43e2b3-835a-4da2-902d-795e8e4db2eb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -168,28 +177,6 @@
                 },
                 {
                     "name": "",
-                    "id": "eabe6e6c-9909-4f45-87e3-2427f0390070",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Cut",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "28eb01ca-9a83-4cfd-aecd-e7a606d016e4",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Cut",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d5af7715-e2f3-4eb9-b71c-0bb0f810dddd",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -207,6 +194,50 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Bump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d588aaa1-c414-4f69-94e2-f022072fff8f",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CutNarrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e31b8565-ec90-4f45-a72c-6108f22d0e80",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CutNarrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eabe6e6c-9909-4f45-87e3-2427f0390070",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CutWide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28eb01ca-9a83-4cfd-aecd-e7a606d016e4",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CutWide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

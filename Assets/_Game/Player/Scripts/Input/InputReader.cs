@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
     public event Action<Vector2> Move;
-    public event Action<bool> Cut;
+    public event Action<bool> CutWide;
+    public event Action<bool> CutNarrow;
     public event Action<bool> Bump;
 
     private PlayerInputActions _playerInputActions;
@@ -30,14 +31,19 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
     {
         Move?.Invoke(context.ReadValue<Vector2>());
     }
-
-    public void OnCut(InputAction.CallbackContext context)
-    {
-        Cut?.Invoke(context.ReadValueAsButton());
-    }
-
+    
     public void OnBump(InputAction.CallbackContext context)
     {
         Bump?.Invoke(context.ReadValueAsButton());
+    }
+
+    public void OnCutWide(InputAction.CallbackContext context)
+    {
+        CutWide?.Invoke(context.ReadValueAsButton());
+    }
+    
+    public void OnCutNarrow(InputAction.CallbackContext context)
+    {
+        CutNarrow?.Invoke(context.ReadValueAsButton());
     }
 }
