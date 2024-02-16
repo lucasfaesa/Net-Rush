@@ -7,10 +7,13 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("SO's")] 
+    [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
+    [SerializeField] private InputReader inputReader;
+    
     [Header("References")] 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
-    [SerializeField] private InputReader inputReader;
     [SerializeField] private GroundChecker groundChecker;
 
     [Header("Movement Settings")] 
@@ -23,6 +26,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCooldown = 0f;
     [SerializeField] private float jumpMaxHeight = 2f;
     [SerializeField] private float gravityMultiplier = 3f;
+
+    [Header("Action Settings")] 
+    [SerializeField] private float actionCooldown = 1f;
     
     [Header("Animation Settings")]
     [SerializeField] private float groundedMovementAnimSmoothing  = 0.2f;
@@ -35,20 +41,46 @@ public class PlayerController : MonoBehaviour
     private float smoothedInput;
     private Vector2 _movementDirectionInput;
 
+    private bool _pressingCutButton;
+    private bool _pressingBumpButton;
+        
     private List<Timer> _timers = new();
     private CountdownTimer jumpTimer;
     private CountdownTimer jumpCooldownTimer;
-    
+
+    private CountdownTimer actionCooldownTimer;
+
+    private bool _executingAction;
     
     //Animator Parameters
     private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
+    private static readonly int Cutting = Animator.StringToHash("Cutting");
+    private static readonly int Bumping = Animator.StringToHash("Bumping");
+
+    private void OnEnable()
+    {
+        inputReader.Cut += CutAction;
+        inputReader.Bump += BumpAction;
+        animationFeedbackEventChannel.CutAnimationFinished += CutAnimationEnded;
+        animationFeedbackEventChannel.BumpAnimationFinished += BumpAnimationEnded;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.Cut -= CutAction;
+        inputReader.Bump -= BumpAction;
+        animationFeedbackEventChannel.CutAnimationFinished -= CutAnimationEnded;
+        animationFeedbackEventChannel.BumpAnimationFinished -= BumpAnimationEnded;
+    }
 
     private void Awake()
     {
         //setup timers
         jumpTimer = new CountdownTimer(jumpDuration);
         jumpCooldownTimer = new CountdownTimer(jumpCooldown);
-        _timers = new(2) { jumpTimer, jumpCooldownTimer };
+        actionCooldownTimer = new CountdownTimer(actionCooldown);
+        
+        _timers = new(3) { jumpTimer, jumpCooldownTimer, actionCooldownTimer };
 
         jumpTimer.OnTimerStop += () => jumpCooldownTimer.Start();
     }
@@ -71,6 +103,35 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleJump();
+    }
+
+    private void CutAction(bool pressed)
+    {
+        if (_executingAction || !pressed) return;
+        
+        _executingAction = true;
+        animator.SetBool(Cutting, true);
+        
+    }
+
+    private void BumpAction(bool pressed)
+    {
+        if (_executingAction || !pressed) return;
+        
+        _executingAction = true;
+        animator.SetBool(Bumping, true);
+    }
+
+    private void CutAnimationEnded()
+    {
+        animator.SetBool(Cutting, false);
+        _executingAction = false;
+    }
+
+    private void BumpAnimationEnded()
+    {
+        animator.SetBool(Bumping, false);
+        _executingAction = false;
     }
 
     private void UpdateAnimator()

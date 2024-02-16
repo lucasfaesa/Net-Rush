@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/hip
+    m_Weight: 1
+  - m_Path: Armature/hip/spine
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/neck
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/neck/head
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/neck/head/head_end
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.l
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.l/upperarm.l
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.l/upperarm.l/lowerarm.l
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.l/upperarm.l/lowerarm.l/hand.l
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.l/upperarm.l/lowerarm.l/hand.l/hand.l_end
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.r
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.r/upperarm.r
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.r/upperarm.r/lowerarm.r
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.r/upperarm.r/lowerarm.r/hand.r
+    m_Weight: 1
+  - m_Path: Armature/hip/spine/ribcage/shoulder.r/upperarm.r/lowerarm.r/hand.r/hand.r_end
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.l
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.l/lowerleg.l
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.l/lowerleg.l/foot.l
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.l/lowerleg.l/foot.l/foot.l_end
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.r
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.r/lowerleg.r
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.r/lowerleg.r/foot.r
+    m_Weight: 1
+  - m_Path: Armature/hip/upperleg.r/lowerleg.r/foot.r/foot.r_end
+    m_Weight: 1
+  - m_Path: Samurai
+    m_Weight: 1
