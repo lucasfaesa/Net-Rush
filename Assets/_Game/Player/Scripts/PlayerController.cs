@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
     [Header("SO's")] 
-    [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
     [SerializeField] private InputReader inputReader;
     
     [Header("References")] 
@@ -50,31 +49,10 @@ public class PlayerController : MonoBehaviour
 
     private CountdownTimer actionCooldownTimer;
 
-    private bool _executingAction;
     
     //Animator Parameters
     private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
-    private static readonly int CuttingWide = Animator.StringToHash("CuttingWide");
-    private static readonly int CuttingNarrow = Animator.StringToHash("CuttingNarrow");
-    private static readonly int Bumping = Animator.StringToHash("Bumping");
-
-    private void OnEnable()
-    {
-        inputReader.CutWide += CutWideAction;
-        inputReader.CutNarrow += CutNarrowAction;
-        inputReader.Bump += BumpAction;
-        animationFeedbackEventChannel.CutAnimationFinished += CutAnimationEnded;
-        animationFeedbackEventChannel.BumpAnimationFinished += BumpAnimationEnded;
-    }
-
-    private void OnDisable()
-    {
-        inputReader.CutWide -= CutWideAction;
-        inputReader.CutNarrow -= CutNarrowAction;
-        inputReader.Bump -= BumpAction;
-        animationFeedbackEventChannel.CutAnimationFinished -= CutAnimationEnded;
-        animationFeedbackEventChannel.BumpAnimationFinished -= BumpAnimationEnded;
-    }
+    
 
     private void Awake()
     {
@@ -107,45 +85,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
     }
-
-    private void CutWideAction(bool pressed)
-    {
-        if (_executingAction || !pressed) return;
-        
-        _executingAction = true;
-        animator.SetBool(CuttingWide, true);
-        
-    }
     
-    private void CutNarrowAction(bool pressed)
-    {
-        if (_executingAction || !pressed) return;
-        
-        _executingAction = true;
-        animator.SetBool(CuttingNarrow, true);
-        
-    }
-
-    private void BumpAction(bool pressed)
-    {
-        if (_executingAction || !pressed) return;
-        
-        _executingAction = true;
-        animator.SetBool(Bumping, true);
-    }
-
-    private void CutAnimationEnded()
-    {
-        animator.SetBool(CuttingWide, false);
-        animator.SetBool(CuttingNarrow, false);
-        _executingAction = false;
-    }
-
-    private void BumpAnimationEnded()
-    {
-        animator.SetBool(Bumping, false);
-        _executingAction = false;
-    }
 
     private void UpdateAnimator()
     {

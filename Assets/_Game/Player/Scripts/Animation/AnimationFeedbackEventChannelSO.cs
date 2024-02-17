@@ -8,7 +8,11 @@ public class AnimationFeedbackEventChannelSO : ScriptableObject
 {
     public event Action BumpAnimationFinished;
     public event Action CutAnimationFinished;
-
+    public event Action<Transform> CutWideTriggered;
+    public event Action<Transform> CutNarrowTriggered;
+    public event Action<Transform> BumpTriggered;
+    public event Action<PlayerActionsController.CutPowerEnum> CutPowerChanged;
+    
     public void OnBumpAnimationFinished()
     {
         BumpAnimationFinished?.Invoke();
@@ -18,4 +22,25 @@ public class AnimationFeedbackEventChannelSO : ScriptableObject
     {
         CutAnimationFinished?.Invoke();
     }
+
+    public void OnCutPowerChanged(PlayerActionsController.CutPowerEnum power)
+    {
+        CutPowerChanged?.Invoke(power);
+    }
+    
+    public void OnCutWideTriggered(Transform ballTransform)
+    {
+        CutWideTriggered?.Invoke(ballTransform);
+    }
+    
+    public void OnCutNarrowTriggered(Transform ballTransform)
+    {
+        CutNarrowTriggered?.Invoke(ballTransform);
+    }
+    
+    public void OnBumpTriggered(Transform ballTransform)
+    {
+        BumpTriggered?.Invoke(ballTransform);
+    }
+    
 }

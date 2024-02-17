@@ -16,5 +16,24 @@ public class AnimationFeedback : MonoBehaviour
     public void FinishedCutAnimation()
     {
         animationFeedbackEventChannel.OnCutAnimationFinished();
+        animationFeedbackEventChannel.OnCutPowerChanged(PlayerActionsController.CutPowerEnum.None);
+    }
+
+    //called in animation event
+    public void SetCutPowerWeak()
+    {
+        animationFeedbackEventChannel.OnCutPowerChanged(PlayerActionsController.CutPowerEnum.Weak);
+    }
+    
+    //called in animation event
+    public void SetCutPowerStrong()
+    {
+        animationFeedbackEventChannel.OnCutPowerChanged(PlayerActionsController.CutPowerEnum.Strong);
+    }
+    
+    //called in animation event
+    public void SetCutPowerVeryStrong()
+    {
+        animationFeedbackEventChannel.OnCutPowerChanged(PlayerActionsController.CutPowerEnum.VeryStrong);
     }
 }
