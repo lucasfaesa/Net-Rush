@@ -8,8 +8,9 @@ using UnityEngine.InputSystem;
 public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
     public event Action<Vector2> Move;
-    public event Action<bool> CutWide;
     public event Action<bool> CutNarrow;
+    public event Action<bool> CutWide;
+    public event Action<bool> CutFar;
     public event Action<bool> Bump;
 
     private PlayerInputActions _playerInputActions;
@@ -46,4 +47,10 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
     {
         CutNarrow?.Invoke(context.ReadValueAsButton());
     }
+
+    public void OnCutFar(InputAction.CallbackContext context)
+    {
+        CutFar?.Invoke(context.ReadValueAsButton());
+    }
+
 }

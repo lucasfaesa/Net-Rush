@@ -9,8 +9,10 @@ public class ActionTriggerEnterCheck : MonoBehaviour
     [Space]
     [SerializeField] private ActionTypeEnum actionType;
     
-    private enum ActionTypeEnum {CutWide, CutNarrow, Bump}
+    private enum ActionTypeEnum {CutFar, CutWide, CutNarrow, Bump}
     private bool _triggered;
+
+    private Rigidbody ballRb;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -18,16 +20,22 @@ public class ActionTriggerEnterCheck : MonoBehaviour
         {
             _triggered = true;
             
+            //TODO cache the ball on a variable later, because will be the same ball everytime
+            other.TryGetComponent(out ballRb);
+            
             switch (actionType)
             {
+                case ActionTypeEnum.CutFar:
+                    animationFeedbackEventChannel.OnCutFarTriggered(ballRb);
+                    break;
                 case ActionTypeEnum.CutWide:
-                    animationFeedbackEventChannel.OnCutWideTriggered(other.transform);
+                    animationFeedbackEventChannel.OnCutWideTriggered(ballRb);
                     break;
                 case ActionTypeEnum.CutNarrow:
-                    animationFeedbackEventChannel.OnCutNarrowTriggered(other.transform);
+                    animationFeedbackEventChannel.OnCutNarrowTriggered(ballRb);
                     break;
                 case ActionTypeEnum.Bump:
-                    animationFeedbackEventChannel.OnBumpTriggered(other.transform);
+                    animationFeedbackEventChannel.OnBumpTriggered(ballRb);
                     break;
             }
         }

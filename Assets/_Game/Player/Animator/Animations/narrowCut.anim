@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cut
+  m_Name: narrowCut
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -8679,7 +8679,7 @@ AnimationClip:
     m_KeepOriginalPositionY: 1
     m_KeepOriginalPositionXZ: 1
     m_HeightFromFeet: 0
-    m_Mirror: 0
+    m_Mirror: 1
   m_EditorCurves:
   - serializedVersion: 2
     curve:
@@ -16156,14 +16156,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
+  - time: 0.083333336
     functionName: SetCutPowerVeryStrong
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.29166666
+  - time: 0.20833333
     functionName: SetCutPowerStrong
     data: 
     objectReferenceParameter: {fileID: 0}
