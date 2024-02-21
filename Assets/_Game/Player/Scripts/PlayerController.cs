@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")] 
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float smoothTime = 0.2f;
+    [SerializeField] private float minZPosValue = -0.5700178f;
+    [SerializeField] private float maxZPosValue = -9.41f;
 
     [Header("Jump Settings")] 
     [SerializeField] private float jumpForce = 10f;
@@ -96,8 +98,17 @@ public class PlayerController : MonoBehaviour
     
     private void HandleMovement()
     {
+        
         if (_movementDirectionInput.magnitude > 0f)
         {
+            if (_movementDirectionInput.x > 0 && transform.position.z <= maxZPosValue
+                || _movementDirectionInput.x < 0 && transform.position.z >= minZPosValue)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                return;
+            }
+            
             var velocity = _movementDirectionInput * (moveSpeed * Time.fixedDeltaTime);
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -velocity.x);
 
