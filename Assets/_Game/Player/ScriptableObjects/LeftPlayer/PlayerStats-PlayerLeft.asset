@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7c35748af323d45bb5431c4ac281d2, type: 3}
+  m_Name: PlayerStats-PlayerLeft
+  m_EditorClassIdentifier: 
+  <PlayerSide>k__BackingField: 0
+  <MoveSpeed>k__BackingField: 300
+  <SmoothTime>k__BackingField: 0.2
+  <MinZPosValueLeftSide>k__BackingField: 9.41
+  <MaxZPosValueLeftSide>k__BackingField: 0.5700178
+  <MinZPosValueRightSide>k__BackingField: -0.5700178
+  <MaxZPosValueRightSide>k__BackingField: -9.41
+  <JumpForce>k__BackingField: 10
+  <JumpDuration>k__BackingField: 0.3
+  <JumpCooldown>k__BackingField: 0.5
+  <JumpMaxHeight>k__BackingField: 2
+  <GravityMultiplier>k__BackingField: 3
+  <GroundedMovementAnimSmoothing>k__BackingField: 15
+  <NarrowCutAngle>k__BackingField: 35
+  <WeakForceNarrowCut>k__BackingField: 5
+  <StrongForceNarrowCut>k__BackingField: 10
+  <VeryStrongForceNarrowCut>k__BackingField: 15
+  <WideCutAngle>k__BackingField: 8
+  <WeakForceWideCut>k__BackingField: 5
+  <StrongForceWideCut>k__BackingField: 10
+  <VeryStrongForceWideCut>k__BackingField: 15
+  <FarCutAngle>k__BackingField: -15
+  <WeakForceFarCut>k__BackingField: 9
+  <StrongForceFarCut>k__BackingField: 12
+  <VeryStrongForceFarCut>k__BackingField: 13.5
+  <BumpForce>k__BackingField: 10
+  <BumpForceOnMovement>k__BackingField: 8

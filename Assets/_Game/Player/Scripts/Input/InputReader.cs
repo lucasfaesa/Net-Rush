@@ -5,24 +5,39 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "ScriptableObjects/Player/InputReader")]
-public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
+public class InputReader : ScriptableObject, PlayerInputActions.IPlayerOneActions, PlayerInputActions.IPlayerTwoActions
 {
+    [SerializeField] private bool isLeftSidePlayer;
+    
     public event Action<Vector2> Move;
     public event Action<bool> CutNarrow;
     public event Action<bool> CutWide;
     public event Action<bool> CutFar;
     public event Action<bool> Bump;
 
+
     private PlayerInputActions _playerInputActions;
 
-    public Vector3 Direction => _playerInputActions.Player.Move.ReadValue<Vector2>();
+
+    public Vector3 Direction()
+    {
+        if (isLeftSidePlayer)
+            return _playerInputActions.PlayerOne.Move.ReadValue<Vector2>();
+        else
+            return _playerInputActions.PlayerTwo.Move.ReadValue<Vector2>();
+    }
     
     public void EnableInputActions()
     {
         if (_playerInputActions == null)
         {
             _playerInputActions = new PlayerInputActions();
-            _playerInputActions.Player.SetCallbacks(this);
+            
+            if(isLeftSidePlayer)
+                _playerInputActions.PlayerOne.SetCallbacks(this);
+            
+            else
+                _playerInputActions.PlayerTwo.SetCallbacks(this);
         }
         
         _playerInputActions.Enable();

@@ -24,7 +24,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputActions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerOne"",
             ""id"": ""e00a4ffb-9dca-4388-9886-2196eeaf25d0"",
             ""actions"": [
                 {
@@ -108,31 +108,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""8180e8bd-4097-4f4e-ab88-4523101a6ce9"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""down"",
                     ""id"": ""320bffee-a40b-4347-ac70-c210eb8bc73a"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1c5327b5-f71c-4f60-99c7-4e737386f1d1"",
-                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -152,31 +130,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""2e46982e-44cc-431b-9f0b-c11910bf467a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""right"",
                     ""id"": ""fcfe95b8-67b9-4526-84b5-5d0bc98d6400"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""77bff152-3580-4b21-b6de-dcd0c7e41164"",
-                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -290,6 +246,158 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerTwo"",
+            ""id"": ""b6b1fe46-00b8-4b14-bca2-2a6811e42fe4"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""a02d01f5-cc2e-47a6-bac7-dee2469f5ab5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Bump"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ed8b98a-904d-4e8c-8eb4-be1dad1d6130"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CutNarrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""c773028c-901c-4d4f-ad24-963264ec66f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CutWide"",
+                    ""type"": ""Button"",
+                    ""id"": ""53f437c5-a2e3-450b-9271-e24ef7eb1915"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CutFar"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d4e688c-3079-499d-89af-b1be41e4411d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""c8c9bc05-238f-4ae6-8988-9c35bfd03143"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""907c718b-4a42-4e8f-907d-f131f42c9181"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""01108c58-2df3-40a5-88b2-68e7dc55feaa"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""715a2dbb-741c-4004-b208-2d7a1f6dc0c5"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1b27e93d-1a6c-45ed-9492-1b4785997d2d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e412d81f-130a-4386-b40e-73ced45eb310"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Bump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""763fb2b5-6828-4113-9f9a-b84ccd8665f0"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CutWide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb784696-05f3-44cd-aec1-8b44171a36f1"",
+                    ""path"": ""<Keyboard>/numpad9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CutFar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9f86fe0-fccd-4d90-9b51-5441ac595a9e"",
+                    ""path"": ""<Keyboard>/numpad7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CutNarrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -876,13 +984,20 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Bump = m_Player.FindAction("Bump", throwIfNotFound: true);
-        m_Player_CutNarrow = m_Player.FindAction("CutNarrow", throwIfNotFound: true);
-        m_Player_CutWide = m_Player.FindAction("CutWide", throwIfNotFound: true);
-        m_Player_CutFar = m_Player.FindAction("CutFar", throwIfNotFound: true);
+        // PlayerOne
+        m_PlayerOne = asset.FindActionMap("PlayerOne", throwIfNotFound: true);
+        m_PlayerOne_Move = m_PlayerOne.FindAction("Move", throwIfNotFound: true);
+        m_PlayerOne_Bump = m_PlayerOne.FindAction("Bump", throwIfNotFound: true);
+        m_PlayerOne_CutNarrow = m_PlayerOne.FindAction("CutNarrow", throwIfNotFound: true);
+        m_PlayerOne_CutWide = m_PlayerOne.FindAction("CutWide", throwIfNotFound: true);
+        m_PlayerOne_CutFar = m_PlayerOne.FindAction("CutFar", throwIfNotFound: true);
+        // PlayerTwo
+        m_PlayerTwo = asset.FindActionMap("PlayerTwo", throwIfNotFound: true);
+        m_PlayerTwo_Move = m_PlayerTwo.FindAction("Move", throwIfNotFound: true);
+        m_PlayerTwo_Bump = m_PlayerTwo.FindAction("Bump", throwIfNotFound: true);
+        m_PlayerTwo_CutNarrow = m_PlayerTwo.FindAction("CutNarrow", throwIfNotFound: true);
+        m_PlayerTwo_CutWide = m_PlayerTwo.FindAction("CutWide", throwIfNotFound: true);
+        m_PlayerTwo_CutFar = m_PlayerTwo.FindAction("CutFar", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -953,32 +1068,32 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Bump;
-    private readonly InputAction m_Player_CutNarrow;
-    private readonly InputAction m_Player_CutWide;
-    private readonly InputAction m_Player_CutFar;
-    public struct PlayerActions
+    // PlayerOne
+    private readonly InputActionMap m_PlayerOne;
+    private List<IPlayerOneActions> m_PlayerOneActionsCallbackInterfaces = new List<IPlayerOneActions>();
+    private readonly InputAction m_PlayerOne_Move;
+    private readonly InputAction m_PlayerOne_Bump;
+    private readonly InputAction m_PlayerOne_CutNarrow;
+    private readonly InputAction m_PlayerOne_CutWide;
+    private readonly InputAction m_PlayerOne_CutFar;
+    public struct PlayerOneActions
     {
         private @PlayerInputActions m_Wrapper;
-        public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Bump => m_Wrapper.m_Player_Bump;
-        public InputAction @CutNarrow => m_Wrapper.m_Player_CutNarrow;
-        public InputAction @CutWide => m_Wrapper.m_Player_CutWide;
-        public InputAction @CutFar => m_Wrapper.m_Player_CutFar;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public PlayerOneActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerOne_Move;
+        public InputAction @Bump => m_Wrapper.m_PlayerOne_Bump;
+        public InputAction @CutNarrow => m_Wrapper.m_PlayerOne_CutNarrow;
+        public InputAction @CutWide => m_Wrapper.m_PlayerOne_CutWide;
+        public InputAction @CutFar => m_Wrapper.m_PlayerOne_CutFar;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerOne; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void AddCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerOneActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerOneActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerOneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerOneActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -996,7 +1111,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.canceled += instance.OnCutFar;
         }
 
-        private void UnregisterCallbacks(IPlayerActions instance)
+        private void UnregisterCallbacks(IPlayerOneActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -1015,21 +1130,99 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.canceled -= instance.OnCutFar;
         }
 
-        public void RemoveCallbacks(IPlayerActions instance)
+        public void RemoveCallbacks(IPlayerOneActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerOneActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlayerActions instance)
+        public void SetCallbacks(IPlayerOneActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerOneActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerOneActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public PlayerOneActions @PlayerOne => new PlayerOneActions(this);
+
+    // PlayerTwo
+    private readonly InputActionMap m_PlayerTwo;
+    private List<IPlayerTwoActions> m_PlayerTwoActionsCallbackInterfaces = new List<IPlayerTwoActions>();
+    private readonly InputAction m_PlayerTwo_Move;
+    private readonly InputAction m_PlayerTwo_Bump;
+    private readonly InputAction m_PlayerTwo_CutNarrow;
+    private readonly InputAction m_PlayerTwo_CutWide;
+    private readonly InputAction m_PlayerTwo_CutFar;
+    public struct PlayerTwoActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public PlayerTwoActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerTwo_Move;
+        public InputAction @Bump => m_Wrapper.m_PlayerTwo_Bump;
+        public InputAction @CutNarrow => m_Wrapper.m_PlayerTwo_CutNarrow;
+        public InputAction @CutWide => m_Wrapper.m_PlayerTwo_CutWide;
+        public InputAction @CutFar => m_Wrapper.m_PlayerTwo_CutFar;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerTwo; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerTwoActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerTwoActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Bump.started += instance.OnBump;
+            @Bump.performed += instance.OnBump;
+            @Bump.canceled += instance.OnBump;
+            @CutNarrow.started += instance.OnCutNarrow;
+            @CutNarrow.performed += instance.OnCutNarrow;
+            @CutNarrow.canceled += instance.OnCutNarrow;
+            @CutWide.started += instance.OnCutWide;
+            @CutWide.performed += instance.OnCutWide;
+            @CutWide.canceled += instance.OnCutWide;
+            @CutFar.started += instance.OnCutFar;
+            @CutFar.performed += instance.OnCutFar;
+            @CutFar.canceled += instance.OnCutFar;
+        }
+
+        private void UnregisterCallbacks(IPlayerTwoActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Bump.started -= instance.OnBump;
+            @Bump.performed -= instance.OnBump;
+            @Bump.canceled -= instance.OnBump;
+            @CutNarrow.started -= instance.OnCutNarrow;
+            @CutNarrow.performed -= instance.OnCutNarrow;
+            @CutNarrow.canceled -= instance.OnCutNarrow;
+            @CutWide.started -= instance.OnCutWide;
+            @CutWide.performed -= instance.OnCutWide;
+            @CutWide.canceled -= instance.OnCutWide;
+            @CutFar.started -= instance.OnCutFar;
+            @CutFar.performed -= instance.OnCutFar;
+            @CutFar.canceled -= instance.OnCutFar;
+        }
+
+        public void RemoveCallbacks(IPlayerTwoActions instance)
+        {
+            if (m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerTwoActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerTwoActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerTwoActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerTwoActions @PlayerTwo => new PlayerTwoActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1193,7 +1386,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_XRSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IPlayerOneActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnBump(InputAction.CallbackContext context);
+        void OnCutNarrow(InputAction.CallbackContext context);
+        void OnCutWide(InputAction.CallbackContext context);
+        void OnCutFar(InputAction.CallbackContext context);
+    }
+    public interface IPlayerTwoActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnBump(InputAction.CallbackContext context);

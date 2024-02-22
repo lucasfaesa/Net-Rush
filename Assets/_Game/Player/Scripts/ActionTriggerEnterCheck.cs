@@ -6,7 +6,7 @@ using UnityEngine;
 public class ActionTriggerEnterCheck : MonoBehaviour
 {
     [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
-    [Space]
+    
     [SerializeField] private ActionTypeEnum actionType;
     
     private enum ActionTypeEnum {CutFar, CutWide, CutNarrow, Bump}

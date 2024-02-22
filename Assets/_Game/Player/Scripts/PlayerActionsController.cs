@@ -5,35 +5,17 @@ using UnityEngine;
 
 public class PlayerActionsController : MonoBehaviour
 {
-    [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
+    [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private InputReader inputReader;
-    [Space]
+    [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
     [Header("Animator")]
     [SerializeField] private Animator animator;
     [Header("Triggers")]
-    [SerializeField] private GameObject cutFarTrigger;
-    [SerializeField] private GameObject cutWideTrigger;
-    [SerializeField] private GameObject cutNarrowTrigger;
-    [SerializeField] private GameObject bumpTrigger;
-    [Header("Actions Settings")]
-    [Header("Narrow Cut Settings")]
-    [SerializeField] private float narrowCutAngle = 35f;
-    [SerializeField] private float weakForceNarrowCut = 5f;
-    [SerializeField] private float strongForceNarrowCut = 10f;
-    [SerializeField] private float veryStrongForceNarrowCut = 15f;
-    [Header("Wide Cut Settings")]
-    [SerializeField] private float wideCutAngle = 8f;
-    [SerializeField] private float weakForceWideCut = 5f;
-    [SerializeField] private float strongForceWideCut = 10f;
-    [SerializeField] private float veryStrongForceWideCut = 15f;
-    [Header("Far Cut Settings")]
-    [SerializeField] private float farCutAngle = -15f;
-    [SerializeField] private float weakForceFarCut = 9f;
-    [SerializeField] private float strongForceFarCut = 12f;
-    [SerializeField] private float VeryStrongForceFarCut = 13.5f;
-    [Header("Bump Settings")]
-    [SerializeField] private float bumpForce = 10;
-    [SerializeField] private float bumpForceOnMovement = 8;
+    [SerializeField] private ActionTriggerEnterCheck cutFarTrigger;
+    [SerializeField] private ActionTriggerEnterCheck cutWideTrigger;
+    [SerializeField] private ActionTriggerEnterCheck cutNarrowTrigger;
+    [SerializeField] private ActionTriggerEnterCheck bumpTrigger;
+
     
     public enum CutPowerEnum { None, Weak, Strong, VeryStrong };
     private CutPowerEnum CurrentCutPower { get; set; }
@@ -80,7 +62,7 @@ public class PlayerActionsController : MonoBehaviour
         if (_executingAction || !pressed) return;
         
         animator.SetBool(CuttingNarrow, true);
-        cutNarrowTrigger.SetActive(true);
+        cutNarrowTrigger.gameObject.SetActive(true);
         _executingAction = true;
     }
     
@@ -89,7 +71,7 @@ public class PlayerActionsController : MonoBehaviour
         if (_executingAction || !pressed) return;
         
         animator.SetBool(CuttingWide, true);
-        cutWideTrigger.SetActive(true);
+        cutWideTrigger.gameObject.SetActive(true);
         _executingAction = true;
     }
     
@@ -98,7 +80,7 @@ public class PlayerActionsController : MonoBehaviour
         if (_executingAction || !pressed) return;
         
         animator.SetBool(CuttingFar, true);
-        cutFarTrigger.SetActive(true);
+        cutFarTrigger.gameObject.SetActive(true);
         _executingAction = true;
     }
 
@@ -107,15 +89,15 @@ public class PlayerActionsController : MonoBehaviour
         if (_executingAction || !pressed) return;
         
         animator.SetBool(Bumping, true);
-        bumpTrigger.SetActive(true);
+        bumpTrigger.gameObject.SetActive(true);
         _executingAction = true;
     }
     
     private void CutAnimationEnded()
     {
-        cutWideTrigger.SetActive(false);
-        cutNarrowTrigger.SetActive(false);
-        cutFarTrigger.SetActive(false);
+        cutWideTrigger.gameObject.SetActive(false);
+        cutNarrowTrigger.gameObject.SetActive(false);
+        cutFarTrigger.gameObject.SetActive(false);
         animator.SetBool(CuttingWide, false);
         animator.SetBool(CuttingNarrow, false);
         animator.SetBool(CuttingFar, false);
@@ -124,7 +106,7 @@ public class PlayerActionsController : MonoBehaviour
 
     private void BumpAnimationEnded()
     {
-        bumpTrigger.SetActive(false);
+        bumpTrigger.gameObject.SetActive(false);
         animator.SetBool(Bumping, false);
         _executingAction = false;
     }
@@ -136,19 +118,19 @@ public class PlayerActionsController : MonoBehaviour
 
     private void OnCutNarrowHitBall(Rigidbody ballRb)
     {
-        ApplyCutForce(ballRb, narrowCutAngle, weakForceNarrowCut, strongForceNarrowCut, veryStrongForceNarrowCut);
+        ApplyCutForce(ballRb, playerStats.NarrowCutAngle, playerStats.WeakForceNarrowCut, playerStats.StrongForceNarrowCut, playerStats.VeryStrongForceNarrowCut);
         Debug.Log($"Current cut Narrow power: {CurrentCutPower}");
     }
 
     private void OnCutWideHitBall(Rigidbody ballRb)
     {
-        ApplyCutForce(ballRb, wideCutAngle, weakForceWideCut, strongForceWideCut, veryStrongForceWideCut);
+        ApplyCutForce(ballRb, playerStats.WideCutAngle, playerStats.WeakForceWideCut, playerStats.StrongForceWideCut, playerStats.VeryStrongForceWideCut);
         Debug.Log($"Current cut Wide power: {CurrentCutPower}");
     }
 
     private void OnCutFarHitBall(Rigidbody ballRb)
     {
-        ApplyCutForce(ballRb, farCutAngle, weakForceFarCut, strongForceFarCut, VeryStrongForceFarCut);
+        ApplyCutForce(ballRb, playerStats.FarCutAngle, playerStats.WeakForceFarCut, playerStats.StrongForceFarCut, playerStats.VeryStrongForceFarCut);
         Debug.Log($"Current cut Far power: {CurrentCutPower}");
     }
     
@@ -190,10 +172,10 @@ public class PlayerActionsController : MonoBehaviour
         ballRb.velocity = Vector3.zero;
         
         float result;
-        if (inputReader.Direction.x > 0)
-            result = -bumpForceOnMovement;
-        else if (inputReader.Direction.x < 0)
-            result = bumpForceOnMovement;
+        if (inputReader.Direction().x > 0)
+            result = -playerStats.BumpForceOnMovement;
+        else if (inputReader.Direction().x < 0)
+            result = playerStats.BumpForceOnMovement;
         else
             result = 0;
         
@@ -201,6 +183,6 @@ public class PlayerActionsController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(result, 0f, 0f);
         Vector3 rotatedForce = rotation * transform.up;
 
-        ballRb.AddForce(rotatedForce * bumpForce, ForceMode.VelocityChange);
+        ballRb.AddForce(rotatedForce * playerStats.BumpForce, ForceMode.VelocityChange);
     }
 }
