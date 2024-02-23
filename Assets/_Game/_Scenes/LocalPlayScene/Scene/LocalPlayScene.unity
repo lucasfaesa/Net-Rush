@@ -1347,9 +1347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661f55f22c364014f9ad04b2f12dc882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLeftPrefab: {fileID: 3472648094820722926, guid: 14c1e5ef4029d4f4ab5b514b21045127,
+  playerLeftPrefab: {fileID: 1335771362684132717, guid: 8d758eaed1927af448c0759dca16fa9c,
     type: 3}
-  playerRightPrefab: {fileID: 3472648094820722926, guid: e187a18e31d419841ad01d2a30cac734,
+  playerRightPrefab: {fileID: 1402742356049574362, guid: 0deb4c91c750ab24ebbb01246741a631,
     type: 3}
   playerLeftPos: {x: 0, y: 0, z: 5.49}
   playerRightPos: {x: 0, y: 0, z: -5.49}
