@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,14 +14,17 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     [Space] 
     [Header("References")]
     [SerializeField] private NetworkRunner runner;
-    [SerializeField] private NetworkPlayer playerPrefab;
+    [SerializeField] private NetworkPlayer networkPlayerReference;
+    [SerializeField] private NetworkObject onlinePuppetRigPrefab;
     [Space] 
     [Header("Debug")]
     [SerializeField] private bool connectToARoomOnStart;
     
     public static NetworkManager Instance { get; private set; }
 
-    private Dictionary<PlayerRef, NetworkPlayer> _networkPlayers = new();
+    public NetworkRunner GetRunner => runner;
+    
+    public Dictionary<PlayerRef, NetworkPlayer> NetworkPlayers { get; set; } = new();
 
     private void Awake()
     {
@@ -58,9 +62,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             Debug.LogError($"Connection Error:{connectionResult.ErrorMessage}");
     }
 
+    //important to remember that this doesnt get all players on the game, just the players that entered
+    //AFTER this player opened the game
     public void AddPlayer(PlayerRef pRef, NetworkPlayer nPlay)
     {
-        _networkPlayers[pRef] = nPlay;
+        NetworkPlayers[pRef] = nPlay;
     }
 
     public NetworkPlayer GetPlayer(PlayerRef player = default)
@@ -68,24 +74,29 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         if (player == default)
             player = runner.LocalPlayer;
 
-        _networkPlayers.TryGetValue(player, out NetworkPlayer networkPlayer);
+        NetworkPlayers.TryGetValue(player, out NetworkPlayer networkPlayer);
         
         return networkPlayer;
     }
     
+    
     public void RemovePlayer(PlayerRef player)
     {
-        if (_networkPlayers.ContainsKey(player))
-            _networkPlayers.Remove(player);
+        if (NetworkPlayers.ContainsKey(player))
+            NetworkPlayers.Remove(player);
         else
             Debug.LogError($"The player {player} was not found!");
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
     {
+        //the networkPlayerReference is not the localplayer, its important to remember that, it just acts serves to indicate that the player spanwed on the server
+        //the local player is instantiated on another script, the "LocalPlayerInstantiator
+        
         if (player == runner.LocalPlayer)
         {
-            runner.Spawn(playerPrefab, playerPrefab.transform.position, playerPrefab.transform.rotation, player);
+            runner.Spawn(networkPlayerReference, Vector3.zero, Quaternion.identity, player);
+            runner.Spawn(onlinePuppetRigPrefab, Vector3.zero, quaternion.identity, player);
         }
     }
     
@@ -105,8 +116,9 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         networkCallbacks.OnPlayerJoined(runner, player);
-
+        
         SpawnPlayer(runner, player);
+        
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

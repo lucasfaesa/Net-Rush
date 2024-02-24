@@ -6,18 +6,17 @@ using UnityEngine;
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] private NetworkPlayerCallbacksSO networkPlayerCallbacks;
+    [Space]
+    [SerializeField] private NetworkObject onlinePuppetPlayerPrefab;
+
+    private PuppetPlayerRig instantiatedPuppet;
     
     public override void Spawned()
     {
         base.Spawned();
         
         NetworkManager.Instance.AddPlayer(Runner.LocalPlayer, this);
-        
+            
         networkPlayerCallbacks.OnPlayerSpawn(Runner, Runner.LocalPlayer);
-        
-        Debug.Log("<color=red>PLAYER SPAWNED</color>");
-        
-        Debug.Log($"Runner {Runner}", Runner);
-        Debug.Log($"Runner {Runner.LocalPlayer}");
     }
 }

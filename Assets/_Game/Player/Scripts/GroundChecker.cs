@@ -17,7 +17,7 @@ public class GroundChecker : MonoBehaviour
     public bool IsGrounded { get; private set; }
 
     private RaycastHit hit;
-    private static readonly int Grounded = Animator.StringToHash("Grounded");
+    public static readonly int Grounded = Animator.StringToHash("Grounded");
     
     private void Update()
     {

@@ -22,10 +22,10 @@ public class PlayerActionsController : MonoBehaviour
     
     private bool _executingAction;
     
-    private static readonly int CuttingFar = Animator.StringToHash("CuttingFar");
-    private static readonly int CuttingWide = Animator.StringToHash("CuttingWide");
-    private static readonly int CuttingNarrow = Animator.StringToHash("CuttingNarrow");
-    private static readonly int Bumping = Animator.StringToHash("Bumping");
+    public static readonly int CuttingFar = Animator.StringToHash("CuttingFar");
+    public static readonly int CuttingWide = Animator.StringToHash("CuttingWide");
+    public static readonly int CuttingNarrow = Animator.StringToHash("CuttingNarrow");
+    public static readonly int Bumping = Animator.StringToHash("Bumping");
     
     private void OnEnable()
     {

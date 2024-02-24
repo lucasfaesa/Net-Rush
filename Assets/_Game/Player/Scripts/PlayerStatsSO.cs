@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStatsSO : ScriptableObject
 {
     public enum PlayerSideEnum {LeftSide, RightSide}
-    [field:SerializeField] public PlayerSideEnum PlayerSide { get; private set; } = PlayerSideEnum.LeftSide;
+    [field:SerializeField] public PlayerSideEnum PlayerSide { get; set; } = PlayerSideEnum.LeftSide;
 
     [field: Header("Movement Settings")] 
     [field:SerializeField] public float MoveSpeed { get; set; } = 300f;

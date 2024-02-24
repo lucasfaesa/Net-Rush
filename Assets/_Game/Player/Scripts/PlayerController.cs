@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool _isPlayerOnLeftSide;
     
     //Animator Parameters
-    private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
+    public static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
     
     private void Awake()
     {

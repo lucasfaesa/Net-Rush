@@ -1327,32 +1327,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724698495}
-  - component: {fileID: 724698494}
+  - component: {fileID: 724698496}
+  - component: {fileID: 724698497}
   m_Layer: 0
-  m_Name: PlayersInstantiator
+  m_Name: LocalPlayerInstantiator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &724698494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724698493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661f55f22c364014f9ad04b2f12dc882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLeftPrefab: {fileID: 3472648094820722926, guid: 14c1e5ef4029d4f4ab5b514b21045127,
-    type: 3}
-  playerRightPrefab: {fileID: 3472648094820722926, guid: e187a18e31d419841ad01d2a30cac734,
-    type: 3}
-  playerLeftPos: {x: 0, y: 0, z: 5.49}
-  playerRightPos: {x: 0, y: 0, z: -5.49}
+  m_IsActive: 1
 --- !u!4 &724698495
 Transform:
   m_ObjectHideFlags: 0
@@ -1368,6 +1351,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &724698496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724698493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7982922e33516d14a8451b52571020de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlineLocalPlayerPrefab: {fileID: 1042189721563406794, guid: 56ec189dd37ec604e9277e601b5ab264,
+    type: 3}
+  playerStats: {fileID: 11400000, guid: 36944f0d875015b438f323a3c324c495, type: 2}
+  playerLeftPos: {x: 0, y: 0, z: 5.49}
+  playerRightPos: {x: 0, y: 0, z: -5.49}
+--- !u!114 &724698497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724698493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2880424267
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 724698496}
 --- !u!1 &898656238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkCallbacks: {fileID: 11400000, guid: f2d8c2cfe72d67e40a56251c07b4f0ee, type: 2}
   runner: {fileID: 898656241}
-  playerPrefab: {fileID: 8359647576942357434, guid: 56ec189dd37ec604e9277e601b5ab264,
+  networkPlayerReference: {fileID: -4359811905779769286, guid: 5a181b58e639d5e458f334d0813bce33,
+    type: 3}
+  onlinePuppetRigPrefab: {fileID: 7786394228080334637, guid: 5fcd6937dbe416d4581815978ee63975,
     type: 3}
   connectToARoomOnStart: 1
 --- !u!4 &898656240
