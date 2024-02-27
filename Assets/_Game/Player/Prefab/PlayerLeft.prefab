@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationFeedbackEventChannel: {fileID: 11400000, guid: 35f7c03a5aed4d946b21dfd0d80f22da,
     type: 2}
+  playerStats: {fileID: 11400000, guid: 36944f0d875015b438f323a3c324c495, type: 2}
   actionType: 1
 --- !u!1 &3657836090731865800
 GameObject:
@@ -241,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationFeedbackEventChannel: {fileID: 11400000, guid: 35f7c03a5aed4d946b21dfd0d80f22da,
     type: 2}
+  playerStats: {fileID: 11400000, guid: 36944f0d875015b438f323a3c324c495, type: 2}
   actionType: 3
 --- !u!1 &4039516710448067695
 GameObject:
@@ -506,6 +508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationFeedbackEventChannel: {fileID: 11400000, guid: 35f7c03a5aed4d946b21dfd0d80f22da,
     type: 2}
+  playerStats: {fileID: 11400000, guid: 36944f0d875015b438f323a3c324c495, type: 2}
   actionType: 2
 --- !u!1 &7549432669368523669
 GameObject:
@@ -627,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationFeedbackEventChannel: {fileID: 11400000, guid: 35f7c03a5aed4d946b21dfd0d80f22da,
     type: 2}
+  playerStats: {fileID: 11400000, guid: 36944f0d875015b438f323a3c324c495, type: 2}
   actionType: 0
 --- !u!1001 &419649513988732858
 PrefabInstance:
