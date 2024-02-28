@@ -25,16 +25,18 @@ public class PointsManager : MonoBehaviour
         ballEventsChannel.BallOut -= UpdatePoints;
     }
 
-    private void UpdatePoints(PlayerStatsSO.PlayerSideEnum playerSideEnum, BallEventsChannelSO.FieldSideEnum fieldSideEnum)
+    private void UpdatePoints(PlayerStatsSO.PlayerSideEnum playerSideEnum, BallEventsChannelSO.FieldSideEnum fieldSideEnum, bool isBallValid)
     {
         if ((playerSideEnum == PlayerStatsSO.PlayerSideEnum.RightSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.RightSide) ||
-            (playerSideEnum == PlayerStatsSO.PlayerSideEnum.LeftSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.RightSide))
+            playerSideEnum == PlayerStatsSO.PlayerSideEnum.LeftSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.RightSide && isBallValid ||
+            playerSideEnum == PlayerStatsSO.PlayerSideEnum.RightSide && !isBallValid)
         {
             gamePoints.AddPoints(PlayerStatsSO.PlayerSideEnum.LeftSide);
         }
         
         if ((playerSideEnum == PlayerStatsSO.PlayerSideEnum.LeftSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.LeftSide) ||
-                 (playerSideEnum == PlayerStatsSO.PlayerSideEnum.RightSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.LeftSide))
+            playerSideEnum == PlayerStatsSO.PlayerSideEnum.RightSide && fieldSideEnum == BallEventsChannelSO.FieldSideEnum.LeftSide && isBallValid ||
+            playerSideEnum == PlayerStatsSO.PlayerSideEnum.LeftSide && !isBallValid)
         {
             gamePoints.AddPoints(PlayerStatsSO.PlayerSideEnum.RightSide);
         }

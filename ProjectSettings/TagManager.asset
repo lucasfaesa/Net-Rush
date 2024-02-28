@@ -17,7 +17,7 @@ TagManager:
   - GroundRightSide
   - GroundLeftSide
   - OutOfBounds
-  - 
+  - ValidationTrigger
   - 
   - 
   - 

@@ -11,6 +11,8 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     public Rigidbody BallRb => rb;
+    
+    public bool IsBallValid { get; private set; }
 
     private PlayerStatsSO.PlayerSideEnum _lastPlayerWhoTouchedTheBall;
 
@@ -30,12 +32,12 @@ public class BallBehavior : MonoBehaviour
         switch (layer)
         {
             case "GroundLeftSide":
-                ballEventsChannel.OnBallIn(_lastPlayerWhoTouchedTheBall, BallEventsChannelSO.FieldSideEnum.LeftSide);
+                ballEventsChannel.OnBallIn(_lastPlayerWhoTouchedTheBall, BallEventsChannelSO.FieldSideEnum.LeftSide, IsBallValid);
                 _ballReady = false;
                 break;
 
             case "GroundRightSide":
-                ballEventsChannel.OnBallIn(_lastPlayerWhoTouchedTheBall, BallEventsChannelSO.FieldSideEnum.RightSide);
+                ballEventsChannel.OnBallIn(_lastPlayerWhoTouchedTheBall, BallEventsChannelSO.FieldSideEnum.RightSide, IsBallValid);
                 _ballReady = false;
                 break;
 
@@ -43,7 +45,18 @@ public class BallBehavior : MonoBehaviour
                 ballEventsChannel.OnBallOut(_lastPlayerWhoTouchedTheBall);
                 _ballReady = false;
                 break;
+            
+            case "ValidationTrigger":
+                SetBallValidity(true);
+                break;
         }
+    }
+    
+    //made this because the ball could pass to the other side UNDER the net, so it needs to go trough
+    //the validator first
+    public void SetBallValidity(bool status)
+    {
+        IsBallValid = status;
     }
 
     public void ResetBallSpeeds()
