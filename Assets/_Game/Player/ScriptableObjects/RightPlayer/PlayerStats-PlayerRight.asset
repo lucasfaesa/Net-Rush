@@ -25,14 +25,14 @@ MonoBehaviour:
   <JumpMaxHeight>k__BackingField: 2
   <GravityMultiplier>k__BackingField: 3
   <GroundedMovementAnimSmoothing>k__BackingField: 15
-  <NarrowCutAngle>k__BackingField: -35
+  <NarrowCutAngle>k__BackingField: 35
   <WeakForceNarrowCut>k__BackingField: 5
   <StrongForceNarrowCut>k__BackingField: 10
   <VeryStrongForceNarrowCut>k__BackingField: 15
-  <WideCutAngle>k__BackingField: -8
-  <WeakForceWideCut>k__BackingField: 5
-  <StrongForceWideCut>k__BackingField: 10
-  <VeryStrongForceWideCut>k__BackingField: 15
+  <WideCutAngle>k__BackingField: 9
+  <WeakForceWideCut>k__BackingField: 6
+  <StrongForceWideCut>k__BackingField: 11
+  <VeryStrongForceWideCut>k__BackingField: 16
   <FarCutAngle>k__BackingField: -15
   <WeakForceFarCut>k__BackingField: 9
   <StrongForceFarCut>k__BackingField: 12

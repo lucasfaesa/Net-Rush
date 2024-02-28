@@ -44,7 +44,6 @@ public class BallBehavior : MonoBehaviour
                 _ballReady = false;
                 break;
         }
-        
     }
 
     public void ResetBallSpeeds()

@@ -136,8 +136,10 @@ public class PlayerActionsController : MonoBehaviour
     
     private void ApplyCutForce(Rigidbody ballRb, float cutAngle, float weakForce, float strongForce, float veryStrongForce)
     {
-        //resetting ball velocity
-        ballRb.velocity = Vector3.zero;
+        if(playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.LeftSide)
+            ballRb.AddTorque(new Vector3(1f,0f,0f) * -10f, ForceMode.VelocityChange);
+        if(playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.RightSide)
+            ballRb.AddTorque(new Vector3(1f,0f,0f) * 10f, ForceMode.VelocityChange);
         
         // Calcula a rotação em torno do eixo X com o offset desejado
         Quaternion rotation = Quaternion.Euler(cutAngle, 0f, 0f);
@@ -168,14 +170,22 @@ public class PlayerActionsController : MonoBehaviour
     
     private void OnBumpHitBall(Rigidbody ballRb)
     {
-        //resetting ball velocity
-        ballRb.velocity = Vector3.zero;
         
         float result;
         if (inputReader.Direction().x > 0)
+        {
             result = -playerStats.BumpForceOnMovement;
+            
+            //rotates the ball visually only
+            ballRb.AddTorque(new Vector3(1f,0f,0f) * -10f, ForceMode.VelocityChange);
+        }
         else if (inputReader.Direction().x < 0)
+        {
             result = playerStats.BumpForceOnMovement;
+            
+            //rotates the ball visually only
+            ballRb.AddTorque(new Vector3(1f,0f,0f) * 10f, ForceMode.VelocityChange);
+        }
         else
             result = 0;
         

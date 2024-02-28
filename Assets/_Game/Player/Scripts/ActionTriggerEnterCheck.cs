@@ -29,6 +29,10 @@ public class ActionTriggerEnterCheck : MonoBehaviour
             }
             
             _ballBehavior.LastPlayerToTouchBall(playerStats.PlayerSide);
+            
+            ballRb.velocity = Vector3.zero;
+            ballRb.angularVelocity = Vector3.zero;
+            
             ballRb.isKinematic = false;
             
             switch (actionType)
