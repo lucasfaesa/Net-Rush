@@ -10,8 +10,7 @@ public class GamePointsSO : ScriptableObject
     public event Action<PlayerStatsSO.PlayerSideEnum> PlayerScored;
 
     public (int leftPlayerPoints, int rightPlayerPoints) GameCurrentPoints { get; set; }
-
-
+    
 
     public void AddPoints(PlayerStatsSO.PlayerSideEnum side)
     {

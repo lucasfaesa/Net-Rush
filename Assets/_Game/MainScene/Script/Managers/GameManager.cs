@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     private BallBehavior _ball;
 
+    private bool _gameStarted;
+
     private void OnEnable()
     {
         gamePoints.PlayerScored += OnPlayerScored;
@@ -64,7 +66,6 @@ public class GameManager : MonoBehaviour
         }
         
         gameEventsChannel.OnInitialCountdownEnded();
-        gameEventsChannel.OnGameStarted();
         
         StartCoroutine(LeftPlayerServe());
     }
@@ -78,6 +79,12 @@ public class GameManager : MonoBehaviour
         
         _ball.ResetAndLockBall(ballStats.LeftPlayerBallServePosition);
         _ball.gameObject.SetActive(true);
+        
+        if (!_gameStarted)
+        {
+            gameEventsChannel.OnGameStarted();
+            _gameStarted = true;
+        }
         
         gameEventsChannel.OnPlayerReadyToServe(PlayerStatsSO.PlayerSideEnum.LeftSide);
     }
