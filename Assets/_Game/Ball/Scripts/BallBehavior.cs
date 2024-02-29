@@ -95,7 +95,8 @@ public class BallBehavior : MonoBehaviour
     {
         Debug.Log("Killed");
         _waitingForServe = false;
-        StopCoroutine(countdownToServeRoutine);
+        if(countdownToServeRoutine != null)
+            StopCoroutine(countdownToServeRoutine);
         _shakeSequence.Pause();
         ballModel.localPosition = Vector3.zero;
         countdownToServeRoutine = null;

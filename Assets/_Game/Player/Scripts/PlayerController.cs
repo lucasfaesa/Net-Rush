@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         inputReader.DisableInputActions();
         rb.isKinematic = true;
+        animator.enabled = false;
     }
     
     private void Start()
