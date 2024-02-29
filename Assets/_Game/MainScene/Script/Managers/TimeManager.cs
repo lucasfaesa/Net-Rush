@@ -42,7 +42,7 @@ public class TimeManager : MonoBehaviour
         yield return new WaitForSeconds(gameDuration);
         
         sandParticle.Stop();
-        gameEventsChannel.OnGameStopwatchStarted();
+        gameEventsChannel.OnGameStopwatchEnded();
     }
     
     private void Materialize(Material mat, float time)

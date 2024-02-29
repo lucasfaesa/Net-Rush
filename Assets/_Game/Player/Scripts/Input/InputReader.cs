@@ -42,6 +42,11 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerOneAction
         
         _playerInputActions.Enable();
     }
+    
+    public void DisableInputActions()
+    {
+        _playerInputActions.Disable();
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {

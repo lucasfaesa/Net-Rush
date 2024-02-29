@@ -30,6 +30,7 @@ public class ActionTriggerEnterCheck : MonoBehaviour
             
             _ballBehavior.LastPlayerToTouchBall(playerStats.PlayerSide);
             _ballBehavior.SetBallValidity(false);
+            _ballBehavior.StopCountdownToServe();
             
             ballRb.velocity = Vector3.zero;
             ballRb.angularVelocity = Vector3.zero;

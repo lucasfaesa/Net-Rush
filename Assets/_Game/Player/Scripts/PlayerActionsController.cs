@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerActionsController : MonoBehaviour
 {
+    [SerializeField] private GameEventsChannelSO gameEventsChannel;
+    [SerializeField] private BallEventsChannelSO ballEventsChannel;
     [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private InputReader inputReader;
     [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
@@ -15,12 +17,15 @@ public class PlayerActionsController : MonoBehaviour
     [SerializeField] private ActionTriggerEnterCheck cutWideTrigger;
     [SerializeField] private ActionTriggerEnterCheck cutNarrowTrigger;
     [SerializeField] private ActionTriggerEnterCheck bumpTrigger;
-
+    [Header("Bracelet")] 
+    [SerializeField] private List<Renderer> bracelets;
     
     public enum CutPowerEnum { None, Weak, Strong, VeryStrong };
     private CutPowerEnum CurrentCutPower { get; set; }
     
     private bool _executingAction;
+
+    private int _executedActions;
     
     private static readonly int CuttingFar = Animator.StringToHash("CuttingFar");
     private static readonly int CuttingWide = Animator.StringToHash("CuttingWide");
@@ -29,6 +34,9 @@ public class PlayerActionsController : MonoBehaviour
     
     private void OnEnable()
     {
+        gameEventsChannel.GameEnded += KillPlayerActions;
+        ballEventsChannel.BallIn += ResetActionsExecuted;
+        ballEventsChannel.BallOut += ResetActionsExecuted;
         inputReader.CutNarrow += CutNarrowPlayerInput;
         inputReader.CutWide += CutWidePlayerInput;
         inputReader.CutFar += CutFarPlayerInput;
@@ -44,6 +52,9 @@ public class PlayerActionsController : MonoBehaviour
 
     private void OnDisable()
     {
+        gameEventsChannel.GameEnded -= KillPlayerActions;
+        ballEventsChannel.BallIn -= ResetActionsExecuted;
+        ballEventsChannel.BallOut -= ResetActionsExecuted;
         inputReader.CutNarrow -= CutNarrowPlayerInput;
         inputReader.CutWide -= CutWidePlayerInput;
         inputReader.CutFar -= CutFarPlayerInput;
@@ -56,6 +67,12 @@ public class PlayerActionsController : MonoBehaviour
         animationFeedbackEventChannel.CutNarrowTriggered -= OnCutNarrowHitBall;
         animationFeedbackEventChannel.BumpTriggered -= OnBumpHitBall;
     }
+
+    private void KillPlayerActions()
+    {
+        this.enabled = false;
+    }
+
 
     private void CutNarrowPlayerInput(bool pressed)
     {
@@ -116,6 +133,24 @@ public class PlayerActionsController : MonoBehaviour
         CurrentCutPower = cutPowerEnum;
     }
 
+    private void CountActionExecuted()
+    {
+        _executedActions += 1;
+        bracelets[_executedActions - 1].material.color = Color.red;
+    }
+
+    private void ResetActionsExecuted(PlayerStatsSO.PlayerSideEnum _, BallEventsChannelSO.FieldSideEnum __, bool ___)
+    {
+        _executedActions = 0;
+        bracelets.ForEach(x=>x.material.color = Color.green);
+    }
+    
+    private void ResetActionsExecuted(PlayerStatsSO.PlayerSideEnum _)
+    {
+        _executedActions = 0;
+        bracelets.ForEach(x=>x.material.color = Color.green);
+    }
+    
     private void OnCutNarrowHitBall(Rigidbody ballRb)
     {
         ApplyCutForce(ballRb, playerStats.NarrowCutAngle, playerStats.WeakForceNarrowCut, playerStats.StrongForceNarrowCut, playerStats.VeryStrongForceNarrowCut);
@@ -136,6 +171,10 @@ public class PlayerActionsController : MonoBehaviour
     
     private void ApplyCutForce(Rigidbody ballRb, float cutAngle, float weakForce, float strongForce, float veryStrongForce)
     {
+        if (_executedActions >= playerStats.MaxNumberOfActions)
+            return;
+        CountActionExecuted();
+        
         if(playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.LeftSide)
             ballRb.AddTorque(new Vector3(1f,0f,0f) * -10f, ForceMode.VelocityChange);
         if(playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.RightSide)
@@ -170,6 +209,9 @@ public class PlayerActionsController : MonoBehaviour
     
     private void OnBumpHitBall(Rigidbody ballRb)
     {
+        if (_executedActions >= playerStats.MaxNumberOfActions)
+            return;
+        CountActionExecuted();
         
         float result;
         if (inputReader.Direction().x > 0)
@@ -195,4 +237,6 @@ public class PlayerActionsController : MonoBehaviour
 
         ballRb.AddForce(rotatedForce * playerStats.BumpForce, ForceMode.VelocityChange);
     }
+
+    
 }

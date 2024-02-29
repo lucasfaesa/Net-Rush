@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameEventsChannelSO gameEventsChannel;
     [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private InputReader inputReader;
     [Header("References")] 
@@ -32,7 +34,18 @@ public class PlayerController : MonoBehaviour
     
     //Animator Parameters
     private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
-    
+
+
+    private void OnEnable()
+    {
+        gameEventsChannel.GameEnded += KillPlayerInputs;
+    }
+
+    private void OnDisable()
+    {
+        gameEventsChannel.GameEnded -= KillPlayerInputs;
+    }
+
     private void Awake()
     {
         //setup timers
@@ -46,6 +59,12 @@ public class PlayerController : MonoBehaviour
         _isPlayerOnLeftSide = playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.LeftSide;
     }
 
+    private void KillPlayerInputs()
+    {
+        inputReader.DisableInputActions();
+        rb.isKinematic = true;
+    }
+    
     private void Start()
     {
         inputReader.EnableInputActions();

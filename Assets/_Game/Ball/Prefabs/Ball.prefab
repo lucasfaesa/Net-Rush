@@ -95,8 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62aefc6e747a1dc4f802585d8f72efe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEventsChannel: {fileID: 11400000, guid: c0f274e6c43ff954d922aae38f3ac549, type: 2}
   ballEventsChannel: {fileID: 11400000, guid: 66e95017e190a624f9f57d6d25fd5c0f, type: 2}
+  ballStats: {fileID: 11400000, guid: 7b7ab8fe828309149b3fa3d014e629ed, type: 2}
   rb: {fileID: 2237455874748808953}
+  collider: {fileID: 2511444797381517523}
+  ballModel: {fileID: 2707753468207870938}
 --- !u!1001 &2457107306272379953
 PrefabInstance:
   m_ObjectHideFlags: 0

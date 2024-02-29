@@ -16,8 +16,7 @@ public class GameEventsChannelSO : ScriptableObject
     public event Action GameStopwatchEnded;
 
     public event Action GameEnded;
-
-    public event Action<PlayerStatsSO.PlayerSideEnum> PlayerGoingToServe; 
+    
     public event Action<PlayerStatsSO.PlayerSideEnum> PlayerReadyToServe;
     
     
@@ -44,11 +43,6 @@ public class GameEventsChannelSO : ScriptableObject
     public void OnGameStarted()
     {
         GameStarted?.Invoke();
-    }
-    
-    public void OnPlayerGoingToServe(PlayerStatsSO.PlayerSideEnum playerSide)
-    {
-        PlayerGoingToServe?.Invoke(playerSide);
     }
 
     public void OnPlayerReadyToServe(PlayerStatsSO.PlayerSideEnum playerSide)

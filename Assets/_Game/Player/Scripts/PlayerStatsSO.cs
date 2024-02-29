@@ -25,8 +25,10 @@ public class PlayerStatsSO : ScriptableObject
     
     [field:Header("Animation Settings")]
     [field:SerializeField] public float GroundedMovementAnimSmoothing { get; set; } = 15f;
-    
-    [field:Header("Actions Settings")]
+
+    [field: Header("Actions Settings")]
+    [field: Header("Max Actions")]
+    [field: SerializeField] public int MaxNumberOfActions { get; set; } = 3;
     [field:Header("Narrow Cut Settings")]
     [field:SerializeField] public float NarrowCutAngle { get; set; } = 35f;
     [field:SerializeField] public float WeakForceNarrowCut { get; set; } = 5f;

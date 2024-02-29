@@ -8,4 +8,5 @@ public class BallStatsSO : ScriptableObject
 {
     [field: SerializeField] public Vector3 LeftPlayerBallServePosition { get; private set; }
     [field: SerializeField] public Vector3 RightPlayerBallServePosition { get; private set; }
+    [field: SerializeField] public float maxTimeToServeBall = 6f;
 }

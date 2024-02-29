@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         gamePoints.PlayerScored += OnPlayerScored;
+        gameEventsChannel.GameStopwatchEnded += GameEnded;
     }
 
     private void OnDisable()
     {
         gamePoints.PlayerScored -= OnPlayerScored;
+        gameEventsChannel.GameStopwatchEnded -= GameEnded;
     }
 
     private void Awake()
@@ -63,7 +65,6 @@ public class GameManager : MonoBehaviour
         
         gameEventsChannel.OnInitialCountdownEnded();
         gameEventsChannel.OnGameStarted();
-        gameEventsChannel.OnPlayerGoingToServe(PlayerStatsSO.PlayerSideEnum.LeftSide);
         
         StartCoroutine(LeftPlayerServe());
     }
@@ -102,6 +103,10 @@ public class GameManager : MonoBehaviour
         if (playerSideEnum == PlayerStatsSO.PlayerSideEnum.RightSide)
             StartCoroutine(RightPlayerServe());
     }
-    
+
+    private void GameEnded()
+    {
+        gameEventsChannel.OnGameEnded();
+    }
     
 }

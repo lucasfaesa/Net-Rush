@@ -1,14 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Sequence = DG.Tweening.Sequence;
 
 public class BallBehavior : MonoBehaviour
 {
+    [SerializeField] private GameEventsChannelSO gameEventsChannel;
     [SerializeField] private BallEventsChannelSO ballEventsChannel;
+    [SerializeField] private BallStatsSO ballStats;
     [Space]
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private SphereCollider collider;
+    [Space] 
+    [SerializeField] private Transform ballModel;
 
     public Rigidbody BallRb => rb;
     
@@ -17,11 +25,82 @@ public class BallBehavior : MonoBehaviour
     private PlayerStatsSO.PlayerSideEnum _lastPlayerWhoTouchedTheBall;
 
     private bool _ballReady;
+
+    private Sequence _shakeSequence;
+    private Coroutine countdownToServeRoutine;
     
+    private bool _waitingForServe;
+    private bool _gameEnded;
+    
+    private void OnEnable()
+    {
+        gameEventsChannel.PlayerReadyToServe += LastPlayerToTouchBall;
+        gameEventsChannel.PlayerReadyToServe += CountdownToServe;
+        gameEventsChannel.GameEnded += KillBall;
+    }
+
+    private void OnDisable()
+    {
+        gameEventsChannel.PlayerReadyToServe -= LastPlayerToTouchBall;
+        gameEventsChannel.PlayerReadyToServe -= CountdownToServe;
+        gameEventsChannel.GameEnded -= KillBall;
+    }
+
+    private void Start()
+    {
+        _shakeSequence = DOTween.Sequence().Append(ballModel.DOShakePosition((ballStats.maxTimeToServeBall / 2), 
+            0.1f, 25, 90, false, false)).SetAutoKill(false).Pause();
+    }
+
     public void LastPlayerToTouchBall(PlayerStatsSO.PlayerSideEnum player)
     {
         _lastPlayerWhoTouchedTheBall = player;
     }
+
+    private void CountdownToServe(PlayerStatsSO.PlayerSideEnum _)
+    {
+        _waitingForServe = true;
+
+        if (countdownToServeRoutine != null)
+            KillBallCountdownRoutineAndShake();
+        
+        countdownToServeRoutine = StartCoroutine(CountdownToServeRoutine());
+    }
+
+    private IEnumerator CountdownToServeRoutine()
+    {
+        if (_gameEnded) yield break;
+        
+        yield return new WaitForSeconds(ballStats.maxTimeToServeBall / 2);
+
+        _shakeSequence.Restart();
+
+        yield return new WaitForSeconds(ballStats.maxTimeToServeBall / 2);
+        
+        BallRb.isKinematic = false;
+        BallRb.useGravity = true;
+        _waitingForServe = false;
+        
+        countdownToServeRoutine = null;
+    }
+
+    public void StopCountdownToServe()
+    {
+        if (!_waitingForServe) return;
+        
+        KillBallCountdownRoutineAndShake();
+    }
+
+    private void KillBallCountdownRoutineAndShake()
+    {
+        Debug.Log("Killed");
+        _waitingForServe = false;
+        StopCoroutine(countdownToServeRoutine);
+        _shakeSequence.Pause();
+        ballModel.localPosition = Vector3.zero;
+        countdownToServeRoutine = null;
+    }
+    
     
     private void OnTriggerEnter(Collider other)
     {
@@ -81,5 +160,13 @@ public class BallBehavior : MonoBehaviour
         this.transform.position = pos;
         _ballReady = true;
     }
-    
+
+    private void KillBall()
+    {
+        KillBallCountdownRoutineAndShake();
+        
+        BallRb.isKinematic = true;
+        collider.enabled = false;
+        _gameEnded = true;
+    }
 }
