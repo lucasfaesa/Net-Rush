@@ -100,6 +100,9 @@ public class PlayerController : MonoBehaviour
     
     private void HandleMovement()
     {
+        if (rb.isKinematic)
+            return;
+        
         if (_movementDirectionInput.magnitude > 0f)
         {
             Vector2 velocity = _movementDirectionInput * (playerStats.MoveSpeed * Time.fixedDeltaTime);
@@ -141,6 +144,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
+        if (rb.isKinematic)
+            return;
+        
         if (_movementDirectionInput.y > 0f && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
         {
             jumpTimer.Start();
@@ -180,6 +186,7 @@ public class PlayerController : MonoBehaviour
             _jumpVelocity += Physics.gravity.y * playerStats.GravityMultiplier * Time.fixedDeltaTime;
         }
 
+        
         rb.velocity = new Vector3(rb.velocity.x, _jumpVelocity, rb.velocity.z);
 
     }

@@ -14,7 +14,7 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private BallStatsSO ballStats;
     [Space]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private SphereCollider collider;
+    [SerializeField] private SphereCollider sphereCollider;
     [Space] 
     [SerializeField] private Transform ballModel;
 
@@ -167,7 +167,7 @@ public class BallBehavior : MonoBehaviour
         KillBallCountdownRoutineAndShake();
         
         BallRb.isKinematic = true;
-        collider.enabled = false;
+        sphereCollider.enabled = false;
         _gameEnded = true;
     }
 }

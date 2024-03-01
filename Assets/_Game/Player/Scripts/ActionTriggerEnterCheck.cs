@@ -32,10 +32,11 @@ public class ActionTriggerEnterCheck : MonoBehaviour
             _ballBehavior.SetBallValidity(false);
             _ballBehavior.StopCountdownToServe();
             
+            ballRb.isKinematic = false;
+            
             ballRb.velocity = Vector3.zero;
             ballRb.angularVelocity = Vector3.zero;
             
-            ballRb.isKinematic = false;
             
             switch (actionType)
             {
