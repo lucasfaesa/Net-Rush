@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     private BallBehavior _ball;
 
     private bool _gameStarted;
-
+    private bool _gameEnded;
+    
     private void OnEnable()
     {
         gamePoints.PlayerScored += OnPlayerScored;
@@ -36,11 +37,6 @@ public class GameManager : MonoBehaviour
     {
         gamePoints.PlayerScored -= OnPlayerScored;
         gameEventsChannel.GameStopwatchEnded -= GameEnded;
-    }
-
-    private void Awake()
-    {
-        gameEventsChannel.OnSceneLoaded();
     }
 
     private IEnumerator Start()
@@ -104,6 +100,8 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerScored(PlayerStatsSO.PlayerSideEnum playerSideEnum)
     {
+        if (_gameEnded) return;
+        
         if (playerSideEnum == PlayerStatsSO.PlayerSideEnum.LeftSide)
             StartCoroutine(LeftPlayerServe());
         
@@ -113,6 +111,7 @@ public class GameManager : MonoBehaviour
 
     private void GameEnded()
     {
+        _gameEnded = true;
         gameEventsChannel.OnGameEnded();
     }
     

@@ -12,6 +12,8 @@ public class MenuOptions : MonoBehaviour
     [Space]
     [SerializeField] private Button buttonToStartSelected;
     [SerializeField] private CanvasGroup canvasGroup;
+    [Space] 
+    [SerializeField] private Fader fader;
     
     private void OnEnable()
     {
@@ -37,7 +39,10 @@ public class MenuOptions : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        fader.FadeIn(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);    
+        });
     }
 
     public void LoadMainMenu()

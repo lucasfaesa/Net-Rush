@@ -9,7 +9,8 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField] private GameEventsChannelSO gameEventsChannel;
     [SerializeField] private HudEventsChannelSO hudEventsChannel;
     [SerializeField] private GamePointsSO gamePoints;
-    [Header("Refs")]
+    [Header("Refs")] 
+    [SerializeField] private Transform mainVirtualCamera;
     [SerializeField] private PlayersInstantiator playersInstantiator;
     [SerializeField] private Transform groundTransform;
     [Header("Camera Orbit Settings")]
@@ -50,6 +51,13 @@ public class CameraBehavior : MonoBehaviour
     private void Start()
     {
         _defaultRot = this.transform.rotation;
+
+        ExecuteIntroAnimation();
+    }
+
+    private void ExecuteIntroAnimation()
+    {
+        
     }
     
     private void GameStarted()
@@ -75,12 +83,12 @@ public class CameraBehavior : MonoBehaviour
         
             if (ballPosY >= 6.73f)
             {
-                this.transform.rotation = Quaternion.Euler(
-                    new Vector3(this.transform.rotation.x + (6.73f - ballPosY) * 5 + 6.73f
+                mainVirtualCamera.rotation = Quaternion.Euler(
+                    new Vector3(mainVirtualCamera.rotation.x + (6.73f - ballPosY) * 5 + 6.73f
                         ,90f, 0));
             }
             else
-                this.transform.rotation = _defaultRot;
+                mainVirtualCamera.rotation = _defaultRot;
         }
         
         if (_canOrbitTarget)
@@ -92,9 +100,9 @@ public class CameraBehavior : MonoBehaviour
             float x = Mathf.Cos(radians) * _targetOrbitRadius;
             float z = Mathf.Sin(radians) * _targetOrbitRadius;
             
-            transform.position = Vector3.Lerp(transform.position,_orbitTarget.position + new Vector3(x, offsetAngleOnPlayer, z), lerpSpeed * Time.deltaTime);
+            mainVirtualCamera.position = Vector3.Lerp(mainVirtualCamera.position,_orbitTarget.position + new Vector3(x, offsetAngleOnPlayer, z), lerpSpeed * Time.deltaTime);
             
-            transform.LookAt(_orbitTarget);
+            mainVirtualCamera.LookAt(_orbitTarget);
         }
     }
 
