@@ -11,6 +11,8 @@ public class GroundChecker : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Vector3 originOffset;
     [SerializeField] private float radius = 0.2f; // Set your desired radius here
+    [Header("Effects")] 
+    [SerializeField] private ParticleSystem landedParticle;
     
     private Color gizmoColor;
     
@@ -18,11 +20,17 @@ public class GroundChecker : MonoBehaviour
 
     private RaycastHit hit;
     private static readonly int Grounded = Animator.StringToHash("Grounded");
+
+    private bool _previousGroundedStatus;
     
     private void Update()
     {
-        //IsGrounded = Physics.SphereCast(transform.position + originOffset, groundDistance, Vector3.down, out _, groundDistance, groundLayer);
+        _previousGroundedStatus = IsGrounded;
+        
         IsGrounded = Physics.SphereCast(transform.position + originOffset, radius, Vector3.down, out hit, groundDistance, groundLayer);
+        
+        if(_previousGroundedStatus != IsGrounded && IsGrounded)
+            landedParticle.Play();
         
         animator.SetBool(Grounded, IsGrounded);
     }

@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LeftPlayerServe()
     {
+        _ball.DeactivateTrail();
         yield return new WaitForSeconds(1f);
         
         var playerLeftPos = _playerLeft.transform.position;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         _ball.ResetAndLockBall(ballStats.LeftPlayerBallServePosition);
         _ball.gameObject.SetActive(true);
         
+        
         if (!_gameStarted)
         {
             gameEventsChannel.OnGameStarted();
@@ -83,10 +85,14 @@ public class GameManager : MonoBehaviour
         }
         
         gameEventsChannel.OnPlayerReadyToServe(PlayerStatsSO.PlayerSideEnum.LeftSide);
+
+        yield return new WaitForSeconds(0.3f);
+        _ball.ActivateTrail();
     }
     
     private IEnumerator RightPlayerServe()
     {
+        _ball.DeactivateTrail();
         yield return new WaitForSeconds(1f);
         
         var playerRightPos = _playerRight.transform.position;
@@ -95,7 +101,11 @@ public class GameManager : MonoBehaviour
         _ball.ResetAndLockBall(ballStats.RightPlayerBallServePosition);
         _ball.gameObject.SetActive(true);
         
+        
         gameEventsChannel.OnPlayerReadyToServe(PlayerStatsSO.PlayerSideEnum.RightSide);
+        
+        yield return new WaitForSeconds(0.3f);
+        _ball.ActivateTrail();
     }
 
     private void OnPlayerScored(PlayerStatsSO.PlayerSideEnum playerSideEnum)

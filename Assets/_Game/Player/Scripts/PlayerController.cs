@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
     [SerializeField] private GroundChecker groundChecker;
+    [Header("Effects")] 
+    [SerializeField] private ParticleSystem walkParticle;
+    
     
     private float _currentSpeed;
     private float _velocity;
@@ -105,6 +108,9 @@ public class PlayerController : MonoBehaviour
         
         if (_movementDirectionInput.magnitude > 0f)
         {
+            if(!walkParticle.isPlaying && groundChecker.IsGrounded)
+                walkParticle.Play();
+            
             Vector2 velocity = _movementDirectionInput * (playerStats.MoveSpeed * Time.fixedDeltaTime);
     
             float minZPosValue, maxZPosValue;
@@ -132,6 +138,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if(walkParticle.isPlaying)
+                walkParticle.Stop();
             SmoothSpeed(0f);
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
         }
@@ -149,6 +157,9 @@ public class PlayerController : MonoBehaviour
         
         if (_movementDirectionInput.y > 0f && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
         {
+            if(walkParticle.isPlaying)
+                walkParticle.Stop();
+            
             jumpTimer.Start();
         }
         else if(_movementDirectionInput.y <= 0f && jumpTimer.IsRunning)
@@ -162,6 +173,10 @@ public class PlayerController : MonoBehaviour
             _jumpVelocity = 0f;
             jumpTimer.Stop();
         }
+
+        if (!groundChecker.IsGrounded)
+            walkParticle.Stop();
+        
         
         //If jump or falling, calculate velocity
         if (jumpTimer.IsRunning)

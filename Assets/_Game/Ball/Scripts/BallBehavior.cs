@@ -17,7 +17,8 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private SphereCollider sphereCollider;
     [Space] 
     [SerializeField] private Transform ballModel;
-
+    [SerializeField] public TrailRenderer trailObject;
+    
     public Rigidbody BallRb => rb;
     
     public bool IsBallValid { get; private set; }
@@ -44,6 +45,18 @@ public class BallBehavior : MonoBehaviour
         gameEventsChannel.PlayerReadyToServe -= LastPlayerToTouchBall;
         gameEventsChannel.PlayerReadyToServe -= CountdownToServe;
         gameEventsChannel.GameEnded -= KillBall;
+    }
+
+    public void ActivateTrail()
+    {
+        trailObject.time = 0.12f;
+        //trailObject.emitting = true;
+    }
+
+    public void DeactivateTrail()
+    {
+        trailObject.time = -1f;
+        //trailObject.emitting = false;
     }
 
     private void Start()
