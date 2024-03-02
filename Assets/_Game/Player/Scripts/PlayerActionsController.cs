@@ -19,6 +19,9 @@ public class PlayerActionsController : MonoBehaviour
     [SerializeField] private ActionTriggerEnterCheck bumpTrigger;
     [Header("Bracelet")] 
     [SerializeField] private List<Renderer> bracelets;
+    [Header("Audio")] 
+    [SerializeField] private AudioPlayer audioPlayer;
+    [SerializeField] private AudioClipSO cutWideAudio;
     
     public enum CutPowerEnum { None, Weak, Strong, VeryStrong };
     private CutPowerEnum CurrentCutPower { get; set; }
@@ -87,6 +90,7 @@ public class PlayerActionsController : MonoBehaviour
     {
         if (_executingAction || !pressed) return;
         
+        audioPlayer.PlayOneShot(cutAudio);
         animator.SetBool(CuttingWide, true);
         cutWideTrigger.gameObject.SetActive(true);
         _executingAction = true;

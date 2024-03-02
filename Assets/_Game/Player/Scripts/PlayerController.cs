@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GroundChecker groundChecker;
     [Header("Effects")] 
     [SerializeField] private ParticleSystem walkParticle;
-    
+    [Header("Audio")] 
+    [SerializeField] private AudioPlayer audioPlayer;
+    [SerializeField] private AudioClipSO jumpAudio;
+
+    private bool _playedJumpAudio;
     
     private float _currentSpeed;
     private float _velocity;
@@ -105,7 +109,8 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.isKinematic)
             return;
-        
+
+            
         if (_movementDirectionInput.magnitude > 0f)
         {
             if(!walkParticle.isPlaying && groundChecker.IsGrounded)
@@ -154,7 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.isKinematic)
             return;
-        
+
         if (_movementDirectionInput.y > 0f && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
         {
             if(walkParticle.isPlaying)
@@ -176,6 +181,8 @@ public class PlayerController : MonoBehaviour
 
         if (!groundChecker.IsGrounded)
             walkParticle.Stop();
+        else
+            _playedJumpAudio = false;
         
         
         //If jump or falling, calculate velocity
@@ -193,6 +200,13 @@ public class PlayerController : MonoBehaviour
             {
                 // Gradually apply less velocity as the jump progresses
                 _jumpVelocity += (1 - jumpTimer.Progress) * playerStats.JumpForce * Time.fixedDeltaTime;
+            }
+            
+            if (!_playedJumpAudio)
+            {
+                Debug.Log("audio");
+                audioPlayer.PlayOneShot(jumpAudio);
+                _playedJumpAudio = true;
             }
         }
         else
