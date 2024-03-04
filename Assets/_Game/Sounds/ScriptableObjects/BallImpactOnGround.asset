@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 764675c648f9df444bf09726361b2a4f, type: 3}
-  m_Name: CutWideAudio
+  m_Name: BallImpactOnGround
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: ad435d44dda2eeb44a43b228fc5992e4, type: 3}
+  audioClip: {fileID: 8300000, guid: 2a459d87b1112b8429f5db22e6fe44d8, type: 3}
   audioClips: []
   randomizeAudios: 0
   loopAudio: 0
-  clipVolume: 0.6122449
+  clipVolume: 0.089262724
   spacialBlend: 0

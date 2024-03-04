@@ -36,4 +36,9 @@ public class AnimationFeedback : MonoBehaviour
     {
         animationFeedbackEventChannel.OnCutPowerChanged(PlayerActionsController.CutPowerEnum.VeryStrong);
     }
+
+    public void PlayerFootHitGround()
+    {
+        animationFeedbackEventChannel.OnPlayerFootHitGround();
+    }
 }

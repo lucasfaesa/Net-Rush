@@ -18,6 +18,10 @@ public class BallBehavior : MonoBehaviour
     [Space] 
     [SerializeField] private Transform ballModel;
     [SerializeField] public TrailRenderer trailObject;
+    [Header("Audio")] 
+    [SerializeField] private AudioPlayer audioPlayer;
+    [SerializeField] private AudioClipSO ballHitGroundAudio;
+    [SerializeField] private AudioClipSO ballHitNetAudio;
     
     public Rigidbody BallRb => rb;
     
@@ -144,7 +148,22 @@ public class BallBehavior : MonoBehaviour
                 break;
         }
     }
-    
+
+    private void OnCollisionEnter(Collision other)
+    {
+        string layer = LayerMask.LayerToName(other.gameObject.layer);
+
+        switch (layer)
+        {
+            case "Ground":
+                audioPlayer.PlaySFX(ballHitGroundAudio);
+                break;
+            case "NetCollider":
+                audioPlayer.PlaySFX(ballHitNetAudio);
+                break;
+        }
+    }
+
     //made this because the ball could pass to the other side UNDER the net, so it needs to go trough
     //the validator first
     public void SetBallValidity(bool status)

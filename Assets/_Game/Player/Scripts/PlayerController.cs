@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AnimationFeedbackEventChannelSO animationFeedbackEventChannel;
     [SerializeField] private GameEventsChannelSO gameEventsChannel;
     [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private InputReader inputReader;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")] 
     [SerializeField] private AudioPlayer audioPlayer;
     [SerializeField] private AudioClipSO jumpAudio;
+    [SerializeField] private AudioClipSO playerStepAudio;
 
     private bool _playedJumpAudio;
     
@@ -45,14 +47,21 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        animationFeedbackEventChannel.PlayerFootHitGround += PlayStepSound;
         gameEventsChannel.GameEnded += KillPlayerInputs;
     }
 
     private void OnDisable()
     {
+        animationFeedbackEventChannel.PlayerFootHitGround -= PlayStepSound;
         gameEventsChannel.GameEnded -= KillPlayerInputs;
     }
 
+    private void PlayStepSound()
+    {
+        audioPlayer.PlaySFX(playerStepAudio);
+    }
+    
     private void Awake()
     {
         //setup timers
@@ -92,12 +101,16 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
     }
-    
 
     private void UpdateAnimator()
     {
         float rawXAxisInput = -_movementDirectionInput.x;
         smoothedInput = Mathf.Lerp(smoothedInput, rawXAxisInput, playerStats.GroundedMovementAnimSmoothing * Time.deltaTime);
+
+        if (smoothedInput > 0f && smoothedInput <= 0.01f)
+            smoothedInput = 0;
+        if (smoothedInput < 0f && smoothedInput >= -0.01f)
+            smoothedInput = 0;
         
         if(_isPlayerOnLeftSide)
             animator.SetFloat(MoveDirection, -smoothedInput);
@@ -109,8 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.isKinematic)
             return;
-
-            
+        
         if (_movementDirectionInput.magnitude > 0f)
         {
             if(!walkParticle.isPlaying && groundChecker.IsGrounded)
@@ -205,7 +217,7 @@ public class PlayerController : MonoBehaviour
             if (!_playedJumpAudio)
             {
                 Debug.Log("audio");
-                audioPlayer.PlayOneShot(jumpAudio);
+                audioPlayer.PlaySFX(jumpAudio);
                 _playedJumpAudio = true;
             }
         }

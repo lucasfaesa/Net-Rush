@@ -18,7 +18,7 @@ TagManager:
   - GroundLeftSide
   - OutOfBounds
   - ValidationTrigger
-  - 
+  - NetCollider
   - 
   - 
   - 

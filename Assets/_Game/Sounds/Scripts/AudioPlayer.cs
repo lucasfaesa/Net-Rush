@@ -40,11 +40,6 @@ public class AudioPlayer : MonoBehaviour
         playingAudioSources.Add(newAudioScource);
     }
 
-    public void PlayOneShot(AudioClipSO SFX)
-    {
-        fixedSource.PlayOneShot(SFX._AudioClip);
-    }
-
     public void PlaySFXGlobal(AudioClipSO SFX)
     {
         GlobalAudioPlayer.PlaySFX(SFX);

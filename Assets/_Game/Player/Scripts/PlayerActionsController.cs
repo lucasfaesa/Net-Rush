@@ -21,7 +21,11 @@ public class PlayerActionsController : MonoBehaviour
     [SerializeField] private List<Renderer> bracelets;
     [Header("Audio")] 
     [SerializeField] private AudioPlayer audioPlayer;
+    [SerializeField] private AudioClipSO cutNarrowAudio;
     [SerializeField] private AudioClipSO cutWideAudio;
+    [SerializeField] private AudioClipSO cutFarAudio;
+    [SerializeField] private AudioClipSO bumpAudio;
+    [SerializeField] private AudioClipSO ballImpactOnHandsAudio;
     
     public enum CutPowerEnum { None, Weak, Strong, VeryStrong };
     private CutPowerEnum CurrentCutPower { get; set; }
@@ -80,7 +84,7 @@ public class PlayerActionsController : MonoBehaviour
     private void CutNarrowPlayerInput(bool pressed)
     {
         if (_executingAction || !pressed) return;
-        
+        audioPlayer.PlaySFX(cutNarrowAudio);
         animator.SetBool(CuttingNarrow, true);
         cutNarrowTrigger.gameObject.SetActive(true);
         _executingAction = true;
@@ -90,7 +94,7 @@ public class PlayerActionsController : MonoBehaviour
     {
         if (_executingAction || !pressed) return;
         
-        audioPlayer.PlayOneShot(cutAudio);
+        audioPlayer.PlaySFX(cutWideAudio);
         animator.SetBool(CuttingWide, true);
         cutWideTrigger.gameObject.SetActive(true);
         _executingAction = true;
@@ -99,7 +103,7 @@ public class PlayerActionsController : MonoBehaviour
     private void CutFarPlayerInput(bool pressed)
     {
         if (_executingAction || !pressed) return;
-        
+        audioPlayer.PlaySFX(cutFarAudio);
         animator.SetBool(CuttingFar, true);
         cutFarTrigger.gameObject.SetActive(true);
         _executingAction = true;
@@ -108,7 +112,7 @@ public class PlayerActionsController : MonoBehaviour
     private void BumpPlayerInput(bool pressed)
     {
         if (_executingAction || !pressed) return;
-        
+        audioPlayer.PlaySFX(bumpAudio);
         animator.SetBool(Bumping, true);
         bumpTrigger.gameObject.SetActive(true);
         _executingAction = true;
@@ -177,6 +181,9 @@ public class PlayerActionsController : MonoBehaviour
     {
         if (_executedActions >= playerStats.MaxNumberOfActions)
             return;
+        
+        audioPlayer.PlaySFX(ballImpactOnHandsAudio);
+        
         CountActionExecuted();
         
         if(playerStats.PlayerSide == PlayerStatsSO.PlayerSideEnum.LeftSide)
@@ -215,6 +222,9 @@ public class PlayerActionsController : MonoBehaviour
     {
         if (_executedActions >= playerStats.MaxNumberOfActions)
             return;
+        
+        audioPlayer.PlaySFX(ballImpactOnHandsAudio);
+        
         CountActionExecuted();
         
         float result;

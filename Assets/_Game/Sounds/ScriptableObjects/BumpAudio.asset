@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764675c648f9df444bf09726361b2a4f, type: 3}
   m_Name: BumpAudio
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 2a459d87b1112b8429f5db22e6fe44d8, type: 3}
+  audioClip: {fileID: 8300000, guid: c96240ee74330d249b485d7a3a11f37a, type: 3}
   audioClips: []
   randomizeAudios: 0
   loopAudio: 0
-  clipVolume: 1
+  clipVolume: 0.70068026
   spacialBlend: 0

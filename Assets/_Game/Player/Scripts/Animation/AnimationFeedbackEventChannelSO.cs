@@ -13,6 +13,7 @@ public class AnimationFeedbackEventChannelSO : ScriptableObject
     public event Action<Rigidbody> CutNarrowTriggered;
     public event Action<Rigidbody> BumpTriggered;
     public event Action<PlayerActionsController.CutPowerEnum> CutPowerChanged;
+    public event Action PlayerFootHitGround;
     
     public void OnBumpAnimationFinished()
     {
@@ -48,5 +49,10 @@ public class AnimationFeedbackEventChannelSO : ScriptableObject
     {
         BumpTriggered?.Invoke(ballRb);
     }
-    
+
+    public void OnPlayerFootHitGround()
+    {
+        PlayerFootHitGround?.Invoke();
+        Debug.Log("Step Sound");
+    }
 }

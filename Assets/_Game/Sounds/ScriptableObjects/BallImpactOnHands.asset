@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 764675c648f9df444bf09726361b2a4f, type: 3}
-  m_Name: CutWideAudio
+  m_Name: BallImpactOnHands
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: ad435d44dda2eeb44a43b228fc5992e4, type: 3}
+  audioClip: {fileID: 8300000, guid: f1e682d2573d65b4798b145e8d7f8768, type: 3}
   audioClips: []
   randomizeAudios: 0
   loopAudio: 0
-  clipVolume: 0.6122449
+  clipVolume: 0.31292516
   spacialBlend: 0
