@@ -16,5 +16,5 @@ MonoBehaviour:
   audioClips: []
   randomizeAudios: 0
   loopAudio: 0
-  clipVolume: 1
+  clipVolume: 0.6190476
   spacialBlend: 0
