@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSource fixedSource;
+    [SerializeField] private AudioMixerGroup sfxMixer;
     [SerializeField] private bool useFixedSourceConfigs;
 
     private List<AudioSource> playingAudioSources = new List<AudioSource>();
@@ -31,6 +33,7 @@ public class AudioPlayer : MonoBehaviour
     public void PlaySFX(AudioClipSO SFX)
     {
         AudioSource newAudioScource = gameObject.AddComponent<AudioSource>();
+        newAudioScource.outputAudioMixerGroup = sfxMixer;
         newAudioScource.clip = SFX._AudioClip;
         newAudioScource.volume = SFX.clipVolume;
         newAudioScource.spatialBlend = SFX.spacialBlend;

@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private CountdownTimer jumpCooldownTimer;
     
     private bool _isPlayerOnLeftSide;
+
+    private bool _isJumpBeingPressed;
     
     //Animator Parameters
     private static readonly int MoveDirection = Animator.StringToHash("MoveDirection");
@@ -47,16 +49,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        inputReader.Jump += OnJump;
         animationFeedbackEventChannel.PlayerFootHitGround += PlayStepSound;
         gameEventsChannel.GameEnded += KillPlayerInputs;
     }
 
     private void OnDisable()
     {
+        inputReader.Jump -= OnJump;
         animationFeedbackEventChannel.PlayerFootHitGround -= PlayStepSound;
         gameEventsChannel.GameEnded -= KillPlayerInputs;
     }
 
+    private void OnJump(bool executed)
+    {
+        _isJumpBeingPressed = executed;
+    }
+    
     private void PlayStepSound()
     {
         audioPlayer.PlaySFX(playerStepAudio);
@@ -172,14 +181,14 @@ public class PlayerController : MonoBehaviour
         if (rb.isKinematic)
             return;
 
-        if (_movementDirectionInput.y > 0f && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
+        if (_isJumpBeingPressed && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
         {
             if(walkParticle.isPlaying)
                 walkParticle.Stop();
             
             jumpTimer.Start();
         }
-        else if(_movementDirectionInput.y <= 0f && jumpTimer.IsRunning)
+        else if(!_isJumpBeingPressed && jumpTimer.IsRunning)
         {
             jumpTimer.Stop();
         }
@@ -216,7 +225,6 @@ public class PlayerController : MonoBehaviour
             
             if (!_playedJumpAudio)
             {
-                Debug.Log("audio");
                 audioPlayer.PlaySFX(jumpAudio);
                 _playedJumpAudio = true;
             }

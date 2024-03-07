@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,6 +18,9 @@ public class MainMenuOptions : MonoBehaviour
     [Header("Credits")]
     [SerializeField] private Transform creditsWindow;
     [SerializeField] private Button exitCreditsWindow;
+    [Header("Rebind Window")]
+    [SerializeField] private Transform rebindWindow;
+    [SerializeField] private Button firstSelectedRebindWindow;
     
     private void Start()
     {
@@ -35,6 +39,7 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleHowToPlayWindow(bool close)
     {
         howToPlayWindow.gameObject.SetActive(!close);
+        canvasGroup.interactable = close;
         
         if (close)
             firstSelected.Select();
@@ -45,11 +50,23 @@ public class MainMenuOptions : MonoBehaviour
     public void ToggleCreditsWindow(bool close)
     {
         creditsWindow.gameObject.SetActive(!close);
+        canvasGroup.interactable = close;
         
         if (close)
             firstSelected.Select();
         else
             exitCreditsWindow.Select();
+    }
+    
+    public void ToggleRebindWindow(bool close)
+    {
+        rebindWindow.gameObject.SetActive(!close);
+        canvasGroup.interactable = close;
+        
+        if (close)
+            firstSelected.Select();
+        else
+            firstSelectedRebindWindow.Select();
     }
     
     public void CloseGame()

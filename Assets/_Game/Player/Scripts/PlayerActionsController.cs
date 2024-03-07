@@ -162,19 +162,16 @@ public class PlayerActionsController : MonoBehaviour
     private void OnCutNarrowHitBall(Rigidbody ballRb)
     {
         ApplyCutForce(ballRb, playerStats.NarrowCutAngle, playerStats.WeakForceNarrowCut, playerStats.StrongForceNarrowCut, playerStats.VeryStrongForceNarrowCut);
-        Debug.Log($"Current cut Narrow power: {CurrentCutPower}");
     }
 
     private void OnCutWideHitBall(Rigidbody ballRb)
     {
         ApplyCutForce(ballRb, playerStats.WideCutAngle, playerStats.WeakForceWideCut, playerStats.StrongForceWideCut, playerStats.VeryStrongForceWideCut);
-        Debug.Log($"Current cut Wide power: {CurrentCutPower}");
     }
 
     private void OnCutFarHitBall(Rigidbody ballRb)
     {
         ApplyCutForce(ballRb, playerStats.FarCutAngle, playerStats.WeakForceFarCut, playerStats.StrongForceFarCut, playerStats.VeryStrongForceFarCut);
-        Debug.Log($"Current cut Far power: {CurrentCutPower}");
     }
     
     private void ApplyCutForce(Rigidbody ballRb, float cutAngle, float weakForce, float strongForce, float veryStrongForce)

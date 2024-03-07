@@ -110,7 +110,6 @@ public class BallBehavior : MonoBehaviour
 
     private void KillBallCountdownRoutineAndShake()
     {
-        Debug.Log("Killed");
         _waitingForServe = false;
         if(countdownToServeRoutine != null)
             StopCoroutine(countdownToServeRoutine);

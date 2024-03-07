@@ -5,72 +5,86 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "ScriptableObjects/Player/InputReader")]
-public class InputReader : ScriptableObject, PlayerInputActions.IPlayerOneActions, PlayerInputActions.IPlayerTwoActions
+public class InputReader : ScriptableObject
 {
-    [SerializeField] private bool isLeftSidePlayer;
+    [Header("Input Actions")]
+    [SerializeField] private InputActionReference move;
+    [SerializeField] private InputActionReference jump;
+    [SerializeField] private InputActionReference cutNarrow;
+    [SerializeField] private InputActionReference cutWide;
+    [SerializeField] private InputActionReference cutFar;
+    [SerializeField] private InputActionReference bump;
+    [Space] 
+    private List<InputActionReference> allActions;
     
-    public event Action<Vector2> Move;
     public event Action<bool> CutNarrow;
     public event Action<bool> CutWide;
     public event Action<bool> CutFar;
     public event Action<bool> Bump;
-
-
-    private PlayerInputActions _playerInputActions;
-
-
+    public event Action<bool> Jump;
+    
     public Vector3 Direction()
     {
-        if (isLeftSidePlayer)
-            return _playerInputActions.PlayerOne.Move.ReadValue<Vector2>();
-        else
-            return _playerInputActions.PlayerTwo.Move.ReadValue<Vector2>();
+        return move.action.ReadValue<Vector2>();
     }
     
     public void EnableInputActions()
     {
-        if (_playerInputActions == null)
-        {
-            _playerInputActions = new PlayerInputActions();
-            
-            if(isLeftSidePlayer)
-                _playerInputActions.PlayerOne.SetCallbacks(this);
-            
-            else
-                _playerInputActions.PlayerTwo.SetCallbacks(this);
-        }
-        
-        _playerInputActions.Enable();
+        allActions.AddRange(new InputActionReference[] { move, jump, cutNarrow, cutWide, cutFar, bump });
+        allActions.ForEach(x => x.action.Enable());
+        AddListeners();
     }
     
     public void DisableInputActions()
     {
-        _playerInputActions.Disable();
+        allActions.ForEach(x=>x.action.Disable());
+        RemoveListeners();
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    private void AddListeners()
     {
-        Move?.Invoke(context.ReadValue<Vector2>());
+        jump.action.performed += OnJumpPerformed;
+        jump.action.canceled += OnJumpPerformed;
+        cutNarrow.action.performed += OnCutNarrow;
+        cutWide.action.performed += OnCutWide;
+        cutFar.action.performed += OnCutFar;
+        bump.action.performed += OnBump;
     }
     
-    public void OnBump(InputAction.CallbackContext context)
+    private void RemoveListeners()
     {
-        Bump?.Invoke(context.ReadValueAsButton());
+        jump.action.performed -= OnJumpPerformed;
+        jump.action.canceled -= OnJumpPerformed;
+        cutNarrow.action.performed -= OnCutNarrow;
+        cutWide.action.performed -= OnCutWide;
+        cutFar.action.performed -= OnCutFar;
+        bump.action.performed -= OnBump;
     }
 
-    public void OnCutWide(InputAction.CallbackContext context)
+    private void OnCutNarrow(InputAction.CallbackContext callbackContext)
     {
-        CutWide?.Invoke(context.ReadValueAsButton());
+        CutNarrow?.Invoke(callbackContext.ReadValueAsButton());
+    }
+
+    private void OnCutWide(InputAction.CallbackContext callbackContext)
+    {
+        CutWide?.Invoke(callbackContext.ReadValueAsButton());
+    }
+
+    private void OnCutFar(InputAction.CallbackContext callbackContext)
+    {
+        CutFar?.Invoke(callbackContext.ReadValueAsButton());
+    }
+
+    private void OnBump(InputAction.CallbackContext callbackContext)
+    {
+        Bump?.Invoke(callbackContext.ReadValueAsButton());
     }
     
-    public void OnCutNarrow(InputAction.CallbackContext context)
+    private void OnJumpPerformed(InputAction.CallbackContext callbackContext)
     {
-        CutNarrow?.Invoke(context.ReadValueAsButton());
+        Jump?.Invoke(callbackContext.ReadValueAsButton());
     }
-
-    public void OnCutFar(InputAction.CallbackContext context)
-    {
-        CutFar?.Invoke(context.ReadValueAsButton());
-    }
+    
 
 }

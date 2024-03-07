@@ -53,6 +53,5 @@ public class AnimationFeedbackEventChannelSO : ScriptableObject
     public void OnPlayerFootHitGround()
     {
         PlayerFootHitGround?.Invoke();
-        Debug.Log("Step Sound");
     }
 }

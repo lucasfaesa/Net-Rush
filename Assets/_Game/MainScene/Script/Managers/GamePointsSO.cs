@@ -33,8 +33,6 @@ public class GamePointsSO : ScriptableObject
     {
         GameCurrentPoints = (leftPlayerPoints, rightPlayerPoints);
         PointsUpdated?.Invoke(GameCurrentPoints.leftPlayerPoints, GameCurrentPoints.rightPlayerPoints);
-        
-        Debug.Log($"Left Player Points: {GameCurrentPoints.leftPlayerPoints}, Right Player Points: {GameCurrentPoints.rightPlayerPoints}");
     }
 
     private void OnPlayerScored(PlayerStatsSO.PlayerSideEnum player)

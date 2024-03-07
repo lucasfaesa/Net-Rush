@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5bd5a1f-6121-49ad-a94a-5f265b62f33e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -84,28 +93,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""e2062cb9-1b15-46a2-838c-2f8d72a0bdd9"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""320bffee-a40b-4347-ac70-c210eb8bc73a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
@@ -130,12 +117,56 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Controller"",
+                    ""id"": ""60d4e8a9-d155-4c19-94c7-c122366276f9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d409d2b1-8e64-4b82-a7b7-e094b762b213"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dfba5d72-7a91-4110-b5d3-d8a5fac50a67"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""399ef2e2-ec7a-47b7-8cb2-35f146507ac1"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Bump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8546e22a-0565-43ad-b338-1a9749fb4a82"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Bump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -153,11 +184,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""adc7a20c-f4ac-46ac-a674-1a117b7a83c5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CutWide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9857ca5b-2c40-498b-ace8-9fb894191f03"",
                     ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CutFar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0847c83e-c1fb-400c-bcd4-9dc917ec9f76"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""CutFar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -170,6 +223,39 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f710127b-a0bb-4557-b7e7-0297ee7011fa"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""566a104f-4eaa-48f6-ada0-94b10942c2d8"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccbeed65-38d9-4675-8a6a-52d1f196c067"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -223,6 +309,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""e666e54a-976e-4c2b-b6d5-bd15f5d49903"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,28 +331,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""907c718b-4a42-4e8f-907d-f131f42c9181"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""01108c58-2df3-40a5-88b2-68e7dc55feaa"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
@@ -322,6 +395,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CutNarrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eab669ca-99da-439f-adf4-85967f95bd1c"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -914,6 +998,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerOne_CutNarrow = m_PlayerOne.FindAction("CutNarrow", throwIfNotFound: true);
         m_PlayerOne_CutWide = m_PlayerOne.FindAction("CutWide", throwIfNotFound: true);
         m_PlayerOne_CutFar = m_PlayerOne.FindAction("CutFar", throwIfNotFound: true);
+        m_PlayerOne_Jump = m_PlayerOne.FindAction("Jump", throwIfNotFound: true);
         // PlayerTwo
         m_PlayerTwo = asset.FindActionMap("PlayerTwo", throwIfNotFound: true);
         m_PlayerTwo_Move = m_PlayerTwo.FindAction("Move", throwIfNotFound: true);
@@ -921,6 +1006,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerTwo_CutNarrow = m_PlayerTwo.FindAction("CutNarrow", throwIfNotFound: true);
         m_PlayerTwo_CutWide = m_PlayerTwo.FindAction("CutWide", throwIfNotFound: true);
         m_PlayerTwo_CutFar = m_PlayerTwo.FindAction("CutFar", throwIfNotFound: true);
+        m_PlayerTwo_Jump = m_PlayerTwo.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -999,6 +1085,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerOne_CutNarrow;
     private readonly InputAction m_PlayerOne_CutWide;
     private readonly InputAction m_PlayerOne_CutFar;
+    private readonly InputAction m_PlayerOne_Jump;
     public struct PlayerOneActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1008,6 +1095,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @CutNarrow => m_Wrapper.m_PlayerOne_CutNarrow;
         public InputAction @CutWide => m_Wrapper.m_PlayerOne_CutWide;
         public InputAction @CutFar => m_Wrapper.m_PlayerOne_CutFar;
+        public InputAction @Jump => m_Wrapper.m_PlayerOne_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOne; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1032,6 +1120,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.started += instance.OnCutFar;
             @CutFar.performed += instance.OnCutFar;
             @CutFar.canceled += instance.OnCutFar;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerOneActions instance)
@@ -1051,6 +1142,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.started -= instance.OnCutFar;
             @CutFar.performed -= instance.OnCutFar;
             @CutFar.canceled -= instance.OnCutFar;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerOneActions instance)
@@ -1077,6 +1171,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerTwo_CutNarrow;
     private readonly InputAction m_PlayerTwo_CutWide;
     private readonly InputAction m_PlayerTwo_CutFar;
+    private readonly InputAction m_PlayerTwo_Jump;
     public struct PlayerTwoActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1086,6 +1181,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @CutNarrow => m_Wrapper.m_PlayerTwo_CutNarrow;
         public InputAction @CutWide => m_Wrapper.m_PlayerTwo_CutWide;
         public InputAction @CutFar => m_Wrapper.m_PlayerTwo_CutFar;
+        public InputAction @Jump => m_Wrapper.m_PlayerTwo_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerTwo; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1110,6 +1206,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.started += instance.OnCutFar;
             @CutFar.performed += instance.OnCutFar;
             @CutFar.canceled += instance.OnCutFar;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerTwoActions instance)
@@ -1129,6 +1228,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @CutFar.started -= instance.OnCutFar;
             @CutFar.performed -= instance.OnCutFar;
             @CutFar.canceled -= instance.OnCutFar;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerTwoActions instance)
@@ -1316,6 +1418,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnCutNarrow(InputAction.CallbackContext context);
         void OnCutWide(InputAction.CallbackContext context);
         void OnCutFar(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IPlayerTwoActions
     {
@@ -1324,6 +1427,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnCutNarrow(InputAction.CallbackContext context);
         void OnCutWide(InputAction.CallbackContext context);
         void OnCutFar(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

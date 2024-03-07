@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedSource: {fileID: 4500318483477284067}
+  sfxMixer: {fileID: 24300002, guid: d97e184384160f54b9b6523f92389d6b, type: 2}
   useFixedSourceConfigs: 0
 --- !u!82 &4500318483477284067
 AudioSource:

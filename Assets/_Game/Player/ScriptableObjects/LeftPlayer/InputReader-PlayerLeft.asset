@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecfee143b444951498c3bd2d1f5ad69f, type: 3}
   m_Name: InputReader-PlayerLeft
   m_EditorClassIdentifier: 
-  isLeftSidePlayer: 1
+  move: {fileID: -1014663348113361421, guid: 570c81e2d68f3004caf3b19d7a6ce132, type: 3}
+  jump: {fileID: 1650015714146333643, guid: 570c81e2d68f3004caf3b19d7a6ce132, type: 3}
+  cutNarrow: {fileID: -3921298858170873960, guid: 570c81e2d68f3004caf3b19d7a6ce132,
+    type: 3}
+  cutWide: {fileID: 411812853115287126, guid: 570c81e2d68f3004caf3b19d7a6ce132, type: 3}
+  cutFar: {fileID: 7888646027775864286, guid: 570c81e2d68f3004caf3b19d7a6ce132, type: 3}
+  bump: {fileID: 8671325798039196767, guid: 570c81e2d68f3004caf3b19d7a6ce132, type: 3}
