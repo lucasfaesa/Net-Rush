@@ -14,7 +14,7 @@ public class NetTextureDeformerController : MonoBehaviour
     {
          //hitMarker.PlayAnimationAtPos(other.GetContact(0).point + new Vector3(0,0,zOffset));
          
-        Debug.Log("Collided");
+        //Debug.Log("Collided");
 
         sineDeformer.transform.position = other.GetContact(0).point;
 
