@@ -15,7 +15,7 @@ public class InputReader : ScriptableObject
     [SerializeField] private InputActionReference cutFar;
     [SerializeField] private InputActionReference bump;
     [Space] 
-    private List<InputActionReference> allActions;
+    private List<InputActionReference> _allActions = new();
     
     public event Action<bool> CutNarrow;
     public event Action<bool> CutWide;
@@ -30,14 +30,14 @@ public class InputReader : ScriptableObject
     
     public void EnableInputActions()
     {
-        allActions.AddRange(new InputActionReference[] { move, jump, cutNarrow, cutWide, cutFar, bump });
-        allActions.ForEach(x => x.action.Enable());
+        _allActions.AddRange(new InputActionReference[] { move, jump, cutNarrow, cutWide, cutFar, bump });
+        _allActions.ForEach(x => x.action.Enable());
         AddListeners();
     }
     
     public void DisableInputActions()
     {
-        allActions.ForEach(x=>x.action.Disable());
+        _allActions.ForEach(x=>x.action.Disable());
         RemoveListeners();
     }
 
