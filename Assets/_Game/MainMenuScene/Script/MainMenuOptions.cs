@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,10 @@ public class MainMenuOptions : MonoBehaviour
     [Header("Rebind Window")]
     [SerializeField] private Transform rebindWindow;
     [SerializeField] private Button firstSelectedRebindWindow;
+    [Header("Graphics Settings")]
+    [SerializeField] private Transform graphicsSettingsWindow;
+    [SerializeField] private Button firstSelectedGraphicsWindow;
+    
     
     private void Start()
     {
@@ -67,6 +72,17 @@ public class MainMenuOptions : MonoBehaviour
             firstSelected.Select();
         else
             firstSelectedRebindWindow.Select();
+    }
+    
+    public void ToggleGraphicSettingsWindow(bool close)
+    {
+        graphicsSettingsWindow.gameObject.SetActive(!close);
+        canvasGroup.interactable = close;
+        
+        if (close)
+            firstSelected.Select();
+        else
+            firstSelectedGraphicsWindow.Select();
     }
     
     public void CloseGame()

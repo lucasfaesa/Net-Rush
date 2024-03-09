@@ -42,8 +42,7 @@ public class Initializer : MonoBehaviour
             Screen.SetResolution(resolutionWidth, resolutionHeight, (FullScreenMode)windowMode, refreshRate);
             QualitySettings.vSyncCount = vSyncCount;
             QualitySettings.SetQualityLevel(new List<string>(QualitySettings.names).IndexOf(graphicsSettings), true);
-                
-
+        
             
         #endif
 

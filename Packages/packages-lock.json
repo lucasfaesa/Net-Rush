@@ -258,13 +258,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.vrtxlabs.unityresolutiondialog": {
-      "version": "https://github.com/vrtx-labs/UnityResolutionDialog.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "fd77088db11469f72c0f1abc81302cf37f8aa6f1"
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
